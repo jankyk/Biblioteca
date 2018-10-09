@@ -42,7 +42,7 @@ public class LoginController {
             if (rs.next() == true) {
                 user = new Funcionario();
                 user.setLogin(rs.getString("login"));
-                user.setNome(rs.getString("nome"));
+                user.setNomefuncionario(rs.getString("nome"));
             }
         } catch (SQLException ex) {
             System.out.println("ERRO de SQL: " + ex.getMessage().toString());

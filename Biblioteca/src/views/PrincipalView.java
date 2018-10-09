@@ -101,8 +101,8 @@ public class PrincipalView extends javax.swing.JFrame {
 
     private void jMenuItemAlunosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAlunosActionPerformed
         // TODO add your handling code here:
-        AlunoView av = new AlunoView();
-        av.setVisible(true);
+        //AlunoView av = new AlunoView();
+        //av.setVisible(true);
     }//GEN-LAST:event_jMenuItemAlunosActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed

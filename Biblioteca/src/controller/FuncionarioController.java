@@ -17,8 +17,6 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import models.Aluno;
-import models.Funcionario;
 
 /**
  *
@@ -29,6 +27,11 @@ public class FuncionarioController {
     Funcionario objFuncionario;
     JTable jTableListaUsuarios = null;
     
+    /**
+     *
+     * @param objFuncionario
+     * @param jTableListaUsuarios
+     */
     public FuncionarioController(Funcionario objFuncionario, JTable jTableListaUsuarios) {
         this.objFuncionario = objFuncionario;
         this.jTableListaUsuarios = jTableListaUsuarios;
@@ -43,7 +46,7 @@ public class FuncionarioController {
         
         try {
             stmt = con.prepareStatement("INSERT INTO funcionarios (nomefuncionario, emailfuncionario, telefonefuncionario, cpffuncionario, ruafuncionario, bairrofuncionario, login, senha, nivelacesso)VALUES(?,?,?,?,?,?,?,?,?)");
-            stmt.setString(1, objFuncionario.get());
+            stmt.setString(1, objFuncionario.getNome());
             stmt.setString(2, objFuncionario.getEmail());
             stmt.setString(3, objFuncionario.getTelefone());
             stmt.setString(4, objFuncionario.getCPF());
