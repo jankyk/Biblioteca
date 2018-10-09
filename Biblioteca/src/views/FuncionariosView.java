@@ -48,12 +48,12 @@ public class FuncionariosView extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txtSenhaUsuario = new javax.swing.JPasswordField();
         jSeparator1 = new javax.swing.JSeparator();
-        jButtonLimparUsuario = new javax.swing.JButton();
-        jButtonIncluirUsuario = new javax.swing.JButton();
+        btnLimpar = new javax.swing.JButton();
+        btnAdicionar = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableListaUsuarios = new javax.swing.JTable();
-        btnExcluirUsuario = new javax.swing.JButton();
+        btnRemover = new javax.swing.JButton();
         txtEmail = new javax.swing.JPasswordField();
         txtTelefone = new javax.swing.JPasswordField();
         txtCPF = new javax.swing.JPasswordField();
@@ -93,19 +93,19 @@ public class FuncionariosView extends javax.swing.JFrame {
             }
         });
 
-        jButtonLimparUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/box.png"))); // NOI18N
-        jButtonLimparUsuario.setText("Limpar");
-        jButtonLimparUsuario.addActionListener(new java.awt.event.ActionListener() {
+        btnLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/box.png"))); // NOI18N
+        btnLimpar.setText("Limpar");
+        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonLimparUsuarioActionPerformed(evt);
+                btnLimparActionPerformed(evt);
             }
         });
 
-        jButtonIncluirUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/sign-add.png"))); // NOI18N
-        jButtonIncluirUsuario.setText("Incluir");
-        jButtonIncluirUsuario.addActionListener(new java.awt.event.ActionListener() {
+        btnAdicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/sign-add.png"))); // NOI18N
+        btnAdicionar.setText("Incluir");
+        btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonIncluirUsuarioActionPerformed(evt);
+                btnAdicionarActionPerformed(evt);
             }
         });
 
@@ -127,11 +127,11 @@ public class FuncionariosView extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTableListaUsuarios);
 
-        btnExcluirUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/sign-delete.png"))); // NOI18N
-        btnExcluirUsuario.setText("Excluir");
-        btnExcluirUsuario.addActionListener(new java.awt.event.ActionListener() {
+        btnRemover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/sign-delete.png"))); // NOI18N
+        btnRemover.setText("Excluir");
+        btnRemover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExcluirUsuarioActionPerformed(evt);
+                btnRemoverActionPerformed(evt);
             }
         });
 
@@ -223,9 +223,9 @@ public class FuncionariosView extends javax.swing.JFrame {
                             .addComponent(txtBairro))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnExcluirUsuario, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButtonLimparUsuario, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButtonIncluirUsuario, javax.swing.GroupLayout.Alignment.TRAILING))))
+                            .addComponent(btnRemover, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnLimpar, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnAdicionar, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -235,18 +235,23 @@ public class FuncionariosView extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNomeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(jButtonIncluirUsuario))
+                    .addComponent(btnAdicionar))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(btnLimpar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnRemover))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(2, 2, 2)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtLoginUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtSenhaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
@@ -277,17 +282,12 @@ public class FuncionariosView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jComboBoxNA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jButtonLimparUsuario)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnExcluirUsuario)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jLabel11))))
+                .addGap(18, 18, 18)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -301,7 +301,7 @@ public class FuncionariosView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomeUsuarioActionPerformed
 
-    private void jButtonIncluirUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirUsuarioActionPerformed
+    private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
         // TODO add your handling code here:
         objFuncionario.setNomefuncionario(txtNomeUsuario.getText());
         objFuncionario.setLogin(txtLoginUsuario.getText());
@@ -312,15 +312,15 @@ public class FuncionariosView extends javax.swing.JFrame {
         
         fc.PreencheFuncionario();
         
-    }//GEN-LAST:event_jButtonIncluirUsuarioActionPerformed
+    }//GEN-LAST:event_btnAdicionarActionPerformed
 
-    private void jButtonLimparUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimparUsuarioActionPerformed
+    private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         // TODO add your handling code here:
         txtNomeUsuario.setText("");
         txtLoginUsuario.setText("");
         txtSenhaUsuario.setText("");
         txtNomeUsuario.grabFocus();
-    }//GEN-LAST:event_jButtonLimparUsuarioActionPerformed
+    }//GEN-LAST:event_btnLimparActionPerformed
 
     private void jTableListaUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableListaUsuariosMouseClicked
         // TODO add your handling code here:
@@ -340,7 +340,7 @@ public class FuncionariosView extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jTableListaUsuariosMouseClicked
 
-    private void btnExcluirUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirUsuarioActionPerformed
+    private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
         // TODO add your handling code here:
         int linhaSelecionada = jTableListaUsuarios.getSelectedRow();
         // Primeira coluna da linha
@@ -353,7 +353,7 @@ public class FuncionariosView extends javax.swing.JFrame {
         fc.excluirFuncionario(objFuncionario);
         
         fc.PreencheFuncionario();
-    }//GEN-LAST:event_btnExcluirUsuarioActionPerformed
+    }//GEN-LAST:event_btnRemoverActionPerformed
 
     private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
         // TODO add your handling code here:
@@ -418,9 +418,9 @@ public class FuncionariosView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnExcluirUsuario;
-    private javax.swing.JButton jButtonIncluirUsuario;
-    private javax.swing.JButton jButtonLimparUsuario;
+    private javax.swing.JButton btnAdicionar;
+    private javax.swing.JButton btnLimpar;
+    private javax.swing.JButton btnRemover;
     private javax.swing.JComboBox<String> jComboBoxCidade;
     private javax.swing.JComboBox<String> jComboBoxNA;
     private javax.swing.JLabel jLabel1;
