@@ -17,28 +17,25 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import models.Funcionario;
+import models.Cidade;
 
 /**
  *
- * @author luis_
+ * @author Janquiel Kappler
  */
-public class FuncionarioController {
+public class CidadeController {
     
-    Funcionario objFuncionario;
-    JTable jTableListaUsuarios = null;
+    Cidade objCidade;
+    JTable jTableCidade = null;
     
-    /**
-     *
-     * @param objFuncionario
-     * @param jTableListaUsuarios
-     */
-    public FuncionarioController(Funcionario objFuncionario, JTable jTableListaUsuarios) {
-        this.objFuncionario = objFuncionario;
-        this.jTableListaUsuarios = jTableListaUsuarios;
+    public CidadeController(Cidade objCidade, JTable jTableCidade) {
+        this.objCidade = objCidade;
+        this.jTableCidade = jTableCidade;
+    
     }
-    
-    public boolean incluirFuncionario(Funcionario objFuncionario){      
+
+
+public boolean incluirCidade(Cidade objCidade){      
         
         
         ConnectionFactory.abreConexao();
@@ -46,16 +43,9 @@ public class FuncionarioController {
         PreparedStatement stmt = null;
         
         try {
-            stmt = con.prepareStatement("INSERT INTO funcionarios (nomefuncionario, emailfuncionario, telefonefuncionario, cpffuncionario, ruafuncionario, bairrofuncionario, login, senha, nivelacesso)VALUES(?,?,?,?,?,?,?,?,?)");
-            stmt.setString(1, objFuncionario.getNomefuncionario());
-            stmt.setString(2, objFuncionario.getEmailfuncionario());
-            stmt.setString(3, objFuncionario.getTelefonefuncionario());
-            stmt.setString(4, objFuncionario.getCpffuncionario());
-            stmt.setString(5, objFuncionario.getRuafuncionario());
-            stmt.setString(6, objFuncionario.getBairrofuncionario());
-            stmt.setString(7, objFuncionario.getLogin());
-            stmt.setString(8, objFuncionario.getSenha());
-            stmt.setString(9, objFuncionario.getNivelacesso());
+            stmt = con.prepareStatement("INSERT INTO funcionarios (nomecidade, idestado)VALUES(?,?)");
+            stmt.setString(1, objCidade.getNome());
+            stmt.setString(2, objCidade.getIdestado());
             
             
             stmt.executeUpdate();
@@ -70,8 +60,7 @@ public class FuncionarioController {
         }
         
     }
-    
-    public boolean excluirFuncionario(Funcionario objFuncionario){      
+public boolean excluirCidade(Cidade objCidade){      
         
         
         ConnectionFactory.abreConexao();
@@ -79,8 +68,8 @@ public class FuncionarioController {
         PreparedStatement stmt = null;
         
         try {
-            stmt = con.prepareStatement("DELETE FROM funcionario WHERE idfuncionario = ? ");
-            stmt.setString(1, objFuncionario.getId());
+            stmt = con.prepareStatement("DELETE FROM cidade WHERE idcidade = ? ");
+            stmt.setInt(1, objCidade.getIdcidade());
             
             stmt.executeUpdate();
             
@@ -94,25 +83,25 @@ public class FuncionarioController {
         }
         
     }
-    
-    public void PreencheFuncionario() {
+
+public void PreencheCidade() {
         
         ConnectionFactory.abreConexao();
         
         Vector<String> cabecalhos = new Vector<String>();
         Vector dadosTabela = new Vector();
+        cabecalhos.add("ID");
         cabecalhos.add("Nome");
-        cabecalhos.add("Login");
-        cabecalhos.add("Senha");
+        cabecalhos.add("Estado");
         
         ResultSet result = null;
         
         try{
             
             String SQL = "";
-            SQL = " SELECT  f.nomefuncionario, f.login, f.senha";
-            SQL += " FROM funcionarios f ";
-            SQL += " ORDER BY f.nomefuncionario ";
+            SQL = " SELECT  c.idcidade, c.nomecidade, c.idestado";
+            SQL += " FROM cidade c ";
+            SQL += " ORDER BY c.nomecidade ";
             
             result = ConnectionFactory.stmt.executeQuery(SQL);
             
@@ -128,7 +117,7 @@ public class FuncionarioController {
             System.out.println(e);
         }
         
-        jTableListaUsuarios.setModel(new DefaultTableModel(dadosTabela, cabecalhos) {
+        jTableCidade.setModel(new DefaultTableModel(dadosTabela, cabecalhos) {
             
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -138,12 +127,12 @@ public class FuncionarioController {
         });
         
         //Permite seleção de apenas uma linha da tabela
-        jTableListaUsuarios.setSelectionMode(0);
+        jTableCidade.setSelectionMode(0);
         
         //Redimensiona as colunas de uma tabela
         TableColumn column = null;
         for (int i = 0; i < 3; i++) {
-            column = jTableListaUsuarios.getColumnModel().getColumn(i);
+            column = jTableCidade.getColumnModel().getColumn(i);
             switch (1) {
                 case 0:
                 column.setPreferredWidth(80);
@@ -157,7 +146,7 @@ public class FuncionarioController {
             }
         }
         
-        jTableListaUsuarios.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+        jTableCidade.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
             
             @Override
             public Component getTableCellRendererComponent (JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
@@ -171,17 +160,17 @@ public class FuncionarioController {
             }
         });
     }
-    
-    public models.Funcionario buscarFuncionarios(String id){
+
+public models.Cidade buscarCidade(String id){
         
         try {
             ConnectionFactory.abreConexao();
             ResultSet rs = null;
 
             String SQL = "";
-            SQL = " SELECT login, senha, nomefuncionario";
-            SQL += " FROM funcionarios";
-            SQL += " WHERE idfuncionario = '" + id + "'";
+            SQL = " SELECT nomecidade, idestado";
+            SQL += " FROM cidade";
+            SQL += " WHERE idcidade = '" + id + "'";
             //stm.executeQuery(SQL);
 
             try{
@@ -189,14 +178,12 @@ public class FuncionarioController {
                 rs = ConnectionFactory.stmt.executeQuery(SQL);
                 System.out.println("Executou Conexão em buscar aluno");
                 
-               objFuncionario = new models.Funcionario();
+               objCidade = new models.Cidade();
                
                 if(rs.next() == true)
                 {
-                    objFuncionario.setLogin(rs.getString(1));
-                    objFuncionario.setSenha(rs.getString(2));
-                    objFuncionario.setNomefuncionario(rs.getString(3));
-
+                    objCidade.setNome(rs.getString(1));
+                    objCidade.setIdestado(rs.getString(2));
                 }
             }
 
@@ -212,6 +199,8 @@ public class FuncionarioController {
         }
         
         System.out.println ("Executou buscar aluno com sucesso");
-        return objFuncionario;
+        return objCidade;
     }
+
+
 }

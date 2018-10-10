@@ -5,17 +5,42 @@
  */
 package views;
 
+import controller.CidadeController;
+import java.sql.SQLException;
+import models.Cidade;
+import tools.CaixaDeDialogo;
+import tools.Combos;
+//import models.CidadeView;
+
 /**
  *
  * @author Janquiel Kappler
  */
-public class Cidade extends javax.swing.JFrame {
+public class CidadeView extends javax.swing.JFrame {
+    
+    Combos objComboUF;
+    Cidade objCidade = new Cidade();
+    CidadeController cc = new CidadeController(objCidade, null);
+    
+    
 
     /**
      * Creates new form Cidade
      */
-    public Cidade() {
+    public CidadeView() {
         initComponents();
+        
+        try{
+            
+        
+        CidadeController cidadeCon = new CidadeController(null, jTableCidade);
+        cidadeCon.PreencheCidade();
+        
+        objComboUF = new Combos(jComboBoxEstado);
+        objComboUF.PreencheCombo("SELECT idestado, nomeestado FROM estado ORDER BY nomeestado");
+    }catch(SQLException ex){
+            System.out.println("Erro ao atualizar os Dados");
+    }
     }
 
     /**
@@ -39,6 +64,8 @@ public class Cidade extends javax.swing.JFrame {
         btnAdicionar = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
         btnRemover = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        txtIDCidade = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -88,6 +115,15 @@ public class Cidade extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setText("ID:");
+
+        txtIDCidade.setEditable(false);
+        txtIDCidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIDCidadeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -96,9 +132,7 @@ public class Cidade extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator1)
-                            .addComponent(jSeparator2)))
+                        .addComponent(jSeparator1))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1))
@@ -107,21 +141,24 @@ public class Cidade extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBoxEstado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtNome)
+                            .addComponent(txtIDCidade)
+                            .addComponent(jComboBoxEstado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnAdicionar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnLimpar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnRemover)))
+                        .addComponent(btnRemover))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jSeparator2)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -133,24 +170,28 @@ public class Cidade extends javax.swing.JFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(14, 14, 14)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(16, 16, 16)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnAdicionar)
                             .addComponent(btnLimpar)
-                            .addComponent(btnRemover))))
+                            .addComponent(btnRemover)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(txtIDCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -159,39 +200,61 @@ public class Cidade extends javax.swing.JFrame {
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
         // TODO add your handling code here:
-        objFuncionario.setNomefuncionario(txtNomeUsuario.getText());
-        objFuncionario.setLogin(txtLoginUsuario.getText());
-        String senha = new String(this.txtSenhaUsuario.getPassword());
-        objFuncionario.setSenha(senha);
-        fc.incluirFuncionario(objFuncionario);
-        CaixaDeDialogo.obterinstancia().exibirMensagem("Usuário cadastrado com Sucesso", "Cadastro", 'i');
-
-        fc.PreencheFuncionario();
+        guardarDados();
+        
+        CidadeController objCidadeCon = new CidadeController(objCidade, null);
+        try{
+            if(objCidadeCon.incluirCidade(objCidade)== true){
+                CaixaDeDialogo.obterinstancia().exibirMensagem("Cidade incluida");
+            }else{
+                CaixaDeDialogo.obterinstancia().exibirMensagem("Erro ao incluir cidade");
+            }
+        }catch (Exception ex) {
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Erro" + ex);
+        }
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         // TODO add your handling code here:
-        txtNomeUsuario.setText("");
-        txtLoginUsuario.setText("");
-        txtSenhaUsuario.setText("");
-        txtNomeUsuario.grabFocus();
+        txtNome.setText("");
+        txtNome.grabFocus();
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
         // TODO add your handling code here:
-        int linhaSelecionada = jTableListaUsuarios.getSelectedRow();
+        int linhaSelecionada = jTableCidade.getSelectedRow();
         // Primeira coluna da linha
-        String coluna1 = jTableListaUsuarios.getModel().getValueAt(linhaSelecionada, 1).toString();
+        String coluna1 = jTableCidade.getModel().getValueAt(linhaSelecionada, 1).toString();
         //basta agora chamar o método buscar, passando o COLUNA1 como parâmetro de consulta
-        objFuncionario = new Funcionario();
+        objCidade = new Cidade();
 
-        objFuncionario = fc.buscarFuncionarios(coluna1);
+        objCidade = cc.buscarCidade(coluna1);
 
-        fc.excluirFuncionario(objFuncionario);
+        cc.excluirCidade(objCidade);
 
-        fc.PreencheFuncionario();
+        cc.PreencheCidade();
     }//GEN-LAST:event_btnRemoverActionPerformed
 
+    private void txtIDCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDCidadeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIDCidadeActionPerformed
+
+    
+    private void preencheCampos(){
+        try{
+            txtIDCidade.setText(String.valueOf(objCidade.getIdcidade()));
+            txtNome.setText(objCidade.getNome());
+            objComboUF.SetaComboBox(String.valueOf(objCidade.getIdestado()));
+        }catch(Exception ex){
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Erro: " + ex.getMessage());
+        }
+    }
+    
+    private void guardarDados(){
+        objCidade.setIdcidade(Integer.parseInt(txtIDCidade.getText()));
+        objCidade.setNome(txtNome.getText());
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -209,20 +272,21 @@ public class Cidade extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Cidade.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CidadeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Cidade.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CidadeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Cidade.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CidadeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Cidade.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CidadeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Cidade().setVisible(true);
+                new CidadeView().setVisible(true);
             }
         });
     }
@@ -235,10 +299,12 @@ public class Cidade extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTable jTableCidade;
+    private javax.swing.JTextField txtIDCidade;
     private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
 }

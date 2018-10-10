@@ -40,7 +40,7 @@ public class FuncionariosView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtNomeUsuario = new javax.swing.JTextField();
+        txtNome = new javax.swing.JTextField();
         txtLoginUsuario = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -59,7 +59,6 @@ public class FuncionariosView extends javax.swing.JFrame {
         txtCPF = new javax.swing.JPasswordField();
         txtRua = new javax.swing.JPasswordField();
         txtBairro = new javax.swing.JPasswordField();
-        jComboBoxNA = new javax.swing.JComboBox<>();
         jComboBoxCidade = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -67,14 +66,13 @@ public class FuncionariosView extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 600));
 
-        txtNomeUsuario.addActionListener(new java.awt.event.ActionListener() {
+        txtNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNomeUsuarioActionPerformed(evt);
+                txtNomeActionPerformed(evt);
             }
         });
 
@@ -165,8 +163,6 @@ public class FuncionariosView extends javax.swing.JFrame {
             }
         });
 
-        jComboBoxNA.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jComboBoxCidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel5.setText("E-mail:");
@@ -180,8 +176,6 @@ public class FuncionariosView extends javax.swing.JFrame {
         jLabel9.setText("Rua:");
 
         jLabel10.setText("Cidade:");
-
-        jLabel11.setText("Nivel Acesso:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -207,14 +201,12 @@ public class FuncionariosView extends javax.swing.JFrame {
                             .addComponent(jLabel7)
                             .addComponent(jLabel8)
                             .addComponent(jLabel9)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel11))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel10))
+                        .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBoxNA, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jComboBoxCidade, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtLoginUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                            .addComponent(txtNomeUsuario)
+                            .addComponent(txtNome)
                             .addComponent(txtSenhaUsuario)
                             .addComponent(txtEmail)
                             .addComponent(txtTelefone, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -239,7 +231,7 @@ public class FuncionariosView extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAdicionar, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtNomeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel2)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -279,15 +271,11 @@ public class FuncionariosView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jComboBoxCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBoxNA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11))))
-                .addGap(18, 18, 18)
+                            .addComponent(jLabel10))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -298,15 +286,26 @@ public class FuncionariosView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSenhaUsuarioActionPerformed
 
-    private void txtNomeUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeUsuarioActionPerformed
+    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNomeUsuarioActionPerformed
+    }//GEN-LAST:event_txtNomeActionPerformed
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
         // TODO add your handling code here:
-        objFuncionario.setNomefuncionario(txtNomeUsuario.getText());
+        objFuncionario.setNomefuncionario(txtNome.getText());
         objFuncionario.setLogin(txtLoginUsuario.getText());
         String senha = new String(this.txtSenhaUsuario.getPassword());
+        objFuncionario.setEmailfuncionario(txtEmail.getText());;
+        objFuncionario.setTelefonefuncionario(txtTelefone.getText());
+        objFuncionario.setCpffuncionario(txtCPF.getText());
+        objFuncionario.setRuafuncionario(txtRua.getText());
+        objFuncionario.setBairrofuncionario(txtBairro.getText());
+        //jComboBoxCidade
+        
+        
+        
+        
+        
         objFuncionario.setSenha(senha);
         fc.incluirFuncionario(objFuncionario);
         CaixaDeDialogo.obterinstancia().exibirMensagem("Usuário cadastrado com Sucesso", "Cadastro", 'i');
@@ -317,10 +316,10 @@ public class FuncionariosView extends javax.swing.JFrame {
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         // TODO add your handling code here:
-        txtNomeUsuario.setText("");
+        txtNome.setText("");
         txtLoginUsuario.setText("");
         txtSenhaUsuario.setText("");
-        txtNomeUsuario.grabFocus();
+        txtNome.grabFocus();
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void jTableListaUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableListaUsuariosMouseClicked
@@ -336,7 +335,7 @@ public class FuncionariosView extends javax.swing.JFrame {
          
          txtLoginUsuario.setText(objFuncionario.getLogin());
          txtSenhaUsuario.setText(objFuncionario.getSenha());
-         txtNomeUsuario.setText(objFuncionario.getNomefuncionario());
+         txtNome.setText(objFuncionario.getNomefuncionario());
          
 
     }//GEN-LAST:event_jTableListaUsuariosMouseClicked
@@ -423,10 +422,8 @@ public class FuncionariosView extends javax.swing.JFrame {
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnRemover;
     private javax.swing.JComboBox<String> jComboBoxCidade;
-    private javax.swing.JComboBox<String> jComboBoxNA;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -443,7 +440,7 @@ public class FuncionariosView extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtCPF;
     private javax.swing.JPasswordField txtEmail;
     private javax.swing.JTextField txtLoginUsuario;
-    private javax.swing.JTextField txtNomeUsuario;
+    private javax.swing.JTextField txtNome;
     private javax.swing.JPasswordField txtRua;
     private javax.swing.JPasswordField txtSenhaUsuario;
     private javax.swing.JPasswordField txtTelefone;
