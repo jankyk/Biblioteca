@@ -5,6 +5,9 @@
  */
 package views;
 
+import controller.EstadoController;
+import java.sql.SQLException;
+import models.Estado;
 import tools.CaixaDeDialogo;
 
 /**
@@ -12,12 +15,25 @@ import tools.CaixaDeDialogo;
  * @author Janquiel Kappler
  */
 public class EstadoView extends javax.swing.JFrame {
+    
+    Estado objEstado = new Estado();
+    EstadoController ec = new EstadoController(objEstado, null);
 
     /**
      * Creates new form EstadoView
      */
     public EstadoView() {
         initComponents();
+        
+        try{
+            
+        
+        EstadoController cidadeCon = new EstadoController(null, jTableEstado);
+        cidadeCon.PreencheEstado();
+        
+    }catch (Exception e) {
+         System.out.println("Erro ao atualizar os Dados");   
+        }
     }
 
     /**
@@ -33,13 +49,15 @@ public class EstadoView extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtNome = new javax.swing.JTextField();
+        txtIDEstado = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableEstado = new javax.swing.JTable();
         btnAdicionar = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
         btnRemover = new javax.swing.JButton();
+        txtNome = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
         txtUF = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -47,9 +65,11 @@ public class EstadoView extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Cadastro de Estados");
 
-        jLabel2.setText("Nome:");
+        jLabel2.setText("ID:");
 
-        jLabel3.setText("UF:");
+        jLabel3.setText("Nome:");
+
+        txtIDEstado.setEditable(false);
 
         jTableEstado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -88,6 +108,8 @@ public class EstadoView extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setText("UF:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -96,21 +118,28 @@ public class EstadoView extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator1)
-                            .addComponent(jSeparator2)))
+                        .addComponent(jSeparator1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(73, 73, 73)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                            .addComponent(txtUF))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtUF, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtIDEstado, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                    .addComponent(txtNome))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnAdicionar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -119,7 +148,7 @@ public class EstadoView extends javax.swing.JFrame {
                         .addComponent(btnRemover))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)))
+                        .addComponent(jSeparator2)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -134,15 +163,19 @@ public class EstadoView extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtIDEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(txtUF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnAdicionar)
                         .addComponent(btnLimpar)
                         .addComponent(btnRemover)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtUF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -155,37 +188,58 @@ public class EstadoView extends javax.swing.JFrame {
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
         // TODO add your handling code here:
-        objFuncionario.setNomefuncionario(txtNome.getText());
-        objFuncionario.setUF(txtUF.getText());
-        fc.incluirFuncionario(objFuncionario);
-        CaixaDeDialogo.obterinstancia().exibirMensagem("Usuário cadastrado com Sucesso", "Cadastro", 'i');
-
-        fc.PreencheFuncionario();
+        guardarDados();
+        
+        EstadoController objEstadoCon = new EstadoController(objEstado, null);
+        try{
+            if(objEstadoCon.incluirEstado(objEstado)== true){
+                CaixaDeDialogo.obterinstancia().exibirMensagem("Estado incluido");
+            }else{
+                CaixaDeDialogo.obterinstancia().exibirMensagem("Erro ao incluir estado");
+            }
+        }catch (Exception ex) {
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Erro" + ex);
+        }
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         // TODO add your handling code here:
-        txtNomeUsuario.setText("");
-        txtLoginUsuario.setText("");
-        txtSenhaUsuario.setText("");
-        txtNomeUsuario.grabFocus();
+        txtIDEstado.setText("");
+        txtNome.setText("");
+        txtIDEstado.grabFocus();
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
         // TODO add your handling code here:
-        int linhaSelecionada = jTableListaUsuarios.getSelectedRow();
+        int linhaSelecionada = jTableEstado.getSelectedRow();
         // Primeira coluna da linha
-        String coluna1 = jTableListaUsuarios.getModel().getValueAt(linhaSelecionada, 1).toString();
+        String coluna1 = jTableEstado.getModel().getValueAt(linhaSelecionada, 1).toString();
         //basta agora chamar o método buscar, passando o COLUNA1 como parâmetro de consulta
-        objFuncionario = new Funcionario();
+        objEstado = new Estado();
 
-        objFuncionario = fc.buscarFuncionarios(coluna1);
+        objEstado = ec.buscarEstado(coluna1);
 
-        fc.excluirFuncionario(objFuncionario);
+        ec.excluirEstado(objEstado);
 
-        fc.PreencheFuncionario();
+        ec.PreencheEstado();
     }//GEN-LAST:event_btnRemoverActionPerformed
 
+    
+    private void preencheCampos(){
+        try{
+            txtIDEstado.setText(String.valueOf(objEstado.getIdestado()));
+            txtNome.setText(objEstado.getNomeestado());
+            txtUF.setText(objEstado.getUf());
+        }catch(Exception ex){
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Erro: " + ex.getMessage());
+        }
+    }
+    
+    private void guardarDados(){
+        objEstado.setIdestado(Integer.parseInt(txtIDEstado.getText()));
+        objEstado.setNomeestado(txtNome.getText());
+        objEstado.setUf(txtUF.getText());
+    }
     /**
      * @param args the command line arguments
      */
@@ -228,10 +282,12 @@ public class EstadoView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTable jTableEstado;
+    private javax.swing.JTextField txtIDEstado;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtUF;
     // End of variables declaration//GEN-END:variables
