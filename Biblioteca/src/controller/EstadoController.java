@@ -168,7 +168,7 @@ public class EstadoController {
             ResultSet rs = null;
 
             String SQL = "";
-            SQL = " SELECT nomestado, uf";
+            SQL = " SELECT idestado, nomeestado, uf";
             SQL += " FROM estado";
             SQL += " WHERE idestado = '" + id + "'";
             //stm.executeQuery(SQL);
@@ -182,8 +182,9 @@ public class EstadoController {
                
                 if(rs.next() == true)
                 {
-                    objEstado.setNomeestado(rs.getString(1));
-                    objEstado.setIdestado(rs.getInt(2));
+                    objEstado.setIdestado(rs.getInt(1));
+                    objEstado.setNomeestado(rs.getString(2));
+                    objEstado.setUf(rs.getString(3));                    
                 }
             }
 

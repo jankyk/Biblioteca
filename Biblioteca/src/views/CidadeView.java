@@ -89,6 +89,11 @@ public class CidadeView extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableCidade.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableCidadeMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableCidade);
 
         btnAdicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/sign-add.png"))); // NOI18N
@@ -212,11 +217,14 @@ public class CidadeView extends javax.swing.JFrame {
         }catch (Exception ex) {
             CaixaDeDialogo.obterinstancia().exibirMensagem("Erro" + ex);
         }
+        
+        cc.PreencheCidade();
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         // TODO add your handling code here:
         txtNome.setText("");
+        txtIDCidade.setText("");
         txtNome.grabFocus();
     }//GEN-LAST:event_btnLimparActionPerformed
 
@@ -239,6 +247,20 @@ public class CidadeView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIDCidadeActionPerformed
 
+    private void jTableCidadeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableCidadeMouseClicked
+        // TODO add your handling code here:
+        //pega a linha selecionada
+        int linhaSelecionada = jTableCidade.getSelectedRow();
+   // Primeira coluna da linha
+   String coluna1 = jTableCidade.getModel().getValueAt(linhaSelecionada, 0).toString();
+   //basta agora chamar o método buscar, passando o COLUNA1 como parâmetro de consulta
+        objCidade = new Cidade();
+         
+        objCidade = cc.buscarCidade(coluna1);
+         
+        preencheCampos();
+    }//GEN-LAST:event_jTableCidadeMouseClicked
+
     
     private void preencheCampos(){
         try{
@@ -253,6 +275,7 @@ public class CidadeView extends javax.swing.JFrame {
     private void guardarDados(){
         objCidade.setIdcidade(Integer.parseInt(txtIDCidade.getText()));
         objCidade.setNome(txtNome.getText());
+        //objCidade.setIdestado(String.valueOf(objCidade.getIdestado()));
     }
     
     /**

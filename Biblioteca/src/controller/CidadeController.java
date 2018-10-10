@@ -168,7 +168,7 @@ public models.Cidade buscarCidade(String id){
             ResultSet rs = null;
 
             String SQL = "";
-            SQL = " SELECT nomecidade, idestado";
+            SQL = " SELECT idcidade, nomecidade, idestado";
             SQL += " FROM cidade";
             SQL += " WHERE idcidade = '" + id + "'";
             //stm.executeQuery(SQL);
@@ -182,8 +182,9 @@ public models.Cidade buscarCidade(String id){
                
                 if(rs.next() == true)
                 {
-                    objCidade.setNome(rs.getString(1));
-                    objCidade.setIdestado(rs.getString(2));
+                    objCidade.setIdcidade(rs.getInt(1));
+                    objCidade.setNome(rs.getString(2));
+                    objCidade.setIdestado(rs.getString(3));
                 }
             }
 
