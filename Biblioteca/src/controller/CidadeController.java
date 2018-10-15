@@ -43,7 +43,7 @@ public boolean incluirCidade(Cidade objCidade){
         PreparedStatement stmt = null;
         
         try {
-            stmt = con.prepareStatement("INSERT INTO funcionarios (nomecidade, idestado)VALUES(?,?)");
+            stmt = con.prepareStatement("INSERT INTO cidade (nomecidade, idestado)VALUES(?,?)");
             stmt.setString(1, objCidade.getNome());
             stmt.setString(2, objCidade.getIdestado());
             
