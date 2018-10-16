@@ -99,7 +99,7 @@ public void PreencheCidade() {
         try{
             
             String SQL = "";
-            SQL = " SELECT  c.idcidade, c.nomecidade, nomeestado";
+            SQL = " SELECT  c.idcidade, c.nomecidade, e.nomeestado";
             SQL += " FROM cidade c, estado e ";
             SQL += " WHERE c.idestado = e.idestado";
             SQL += " ORDER BY c.nomecidade ";
