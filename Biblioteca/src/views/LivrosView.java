@@ -184,27 +184,27 @@ public class LivrosView extends javax.swing.JFrame {
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
         // TODO add your handling code here:
-        objFuncionario.setNomefuncionario(txtNome.getText());
+        /*objFuncionario.setNomefuncionario(txtNome.getText());
         objFuncionario.setLogin(txtLogin.getText());
         String senha = new String(this.txtSenha.getPassword());
         objFuncionario.setSenha(senha);
         fc.incluirFuncionario(objFuncionario);
         CaixaDeDialogo.obterinstancia().exibirMensagem("Usuário cadastrado com Sucesso", "Cadastro", 'i');
 
-        fc.PreencheFuncionario();
+        fc.PreencheFuncionario();*/
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         // TODO add your handling code here:
-        txtNomeUsuario.setText("");
+        /*txtNomeUsuario.setText("");
         txtLoginUsuario.setText("");
         txtSenhaUsuario.setText("");
-        txtNomeUsuario.grabFocus();
+        txtNomeUsuario.grabFocus();*/
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
         // TODO add your handling code here:
-        int linhaSelecionada = jTableListaUsuarios.getSelectedRow();
+        /*int linhaSelecionada = jTableListaUsuarios.getSelectedRow();
         // Primeira coluna da linha
         String coluna1 = jTableListaUsuarios.getModel().getValueAt(linhaSelecionada, 1).toString();
         //basta agora chamar o método buscar, passando o COLUNA1 como parâmetro de consulta
@@ -214,7 +214,7 @@ public class LivrosView extends javax.swing.JFrame {
 
         fc.excluirFuncionario(objFuncionario);
 
-        fc.PreencheFuncionario();
+        fc.PreencheFuncionario();*/
     }//GEN-LAST:event_btnRemoverActionPerformed
 
     /**

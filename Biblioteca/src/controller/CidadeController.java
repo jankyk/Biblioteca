@@ -99,8 +99,9 @@ public void PreencheCidade() {
         try{
             
             String SQL = "";
-            SQL = " SELECT  c.idcidade, c.nomecidade, c.idestado";
-            SQL += " FROM cidade c ";
+            SQL = " SELECT  c.idcidade, c.nomecidade, nomeestado";
+            SQL += " FROM cidade c, estado e ";
+            SQL += " WHERE c.idestado = e.idestado";
             SQL += " ORDER BY c.nomecidade ";
             
             result = ConnectionFactory.stmt.executeQuery(SQL);
