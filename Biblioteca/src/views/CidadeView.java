@@ -218,6 +218,7 @@ public class CidadeView extends javax.swing.JFrame {
             CaixaDeDialogo.obterinstancia().exibirMensagem("Erro" + ex);
         }
         
+        cc.incluirCidade(objCidade);
         cc.PreencheCidade();
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
@@ -273,9 +274,9 @@ public class CidadeView extends javax.swing.JFrame {
     }
     
     private void guardarDados(){
-        objCidade.setIdcidade(Integer.parseInt(txtIDCidade.getText()));
+        //objCidade.setIdcidade(Integer.parseInt(txtIDCidade.getText()));
         objCidade.setNome(txtNome.getText());
-        //objCidade.setIdestado(String.valueOf(objCidade.getIdestado()));
+        objCidade.setIdestado(String.valueOf(objCidade.getIdestado()));
     }
     
     /**

@@ -206,6 +206,7 @@ public class EstadoView extends javax.swing.JFrame {
         // TODO add your handling code here:
         txtUF.setText("");
         txtNome.setText("");
+        txtIDEstado.setText("");
         txtNome.grabFocus();
     }//GEN-LAST:event_btnLimparActionPerformed
 
