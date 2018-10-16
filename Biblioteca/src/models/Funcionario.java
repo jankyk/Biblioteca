@@ -11,7 +11,7 @@ package models;
  */
 public class Funcionario {
     
-    private String id;
+    private int idfuncionario;
     private String nomefuncionario;
     private String emailfuncionario;
     private String telefonefuncionario;
@@ -21,13 +21,22 @@ public class Funcionario {
     private String login;
     private String senha;
     private String nivelacesso;
+    private String idcidade;
 
-    public String getId() {
-        return id;
+    public String getIdcidade() {
+        return idcidade;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setIdcidade(String idcidade) {
+        this.idcidade = idcidade;
+    }
+
+    public int getIdFuncionario() {
+        return idfuncionario;
+    }
+
+    public void setIdFuncionario(int idfuncionario) {
+        this.idfuncionario = idfuncionario;
     }
 
     public String getNomefuncionario() {

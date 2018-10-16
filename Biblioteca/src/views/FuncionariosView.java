@@ -6,8 +6,10 @@
 package views;
 
 import controller.FuncionarioController;
+import java.sql.SQLException;
 import models.Funcionario;
 import tools.CaixaDeDialogo;
+import tools.Combos;
 
 /**
  *
@@ -15,6 +17,7 @@ import tools.CaixaDeDialogo;
  */
 public class FuncionariosView extends javax.swing.JFrame {
     
+    Combos objComboCidade;
     Funcionario objFuncionario = new Funcionario();
     FuncionarioController fc = new FuncionarioController(objFuncionario, null);
 
@@ -26,8 +29,17 @@ public class FuncionariosView extends javax.swing.JFrame {
         initComponents();    
         
         
-        fc = new FuncionarioController(null, jTableListaUsuarios);
-        fc.PreencheFuncionario();
+        try{
+            
+        
+        FuncionarioController funcionarioCon = new FuncionarioController(null, jTableListaFuncionarios);
+        funcionarioCon.PreencheFuncionario();
+        
+        objComboCidade = new Combos(jComboBoxCidade);
+        objComboCidade.PreencheCombo("SELECT idcidade, nomecidade FROM cidade ORDER BY nomecidade");
+            }catch(SQLException ex){
+            System.out.println("Erro ao atualizar os Dados");
+    }
         
     }
 
@@ -52,7 +64,7 @@ public class FuncionariosView extends javax.swing.JFrame {
         btnAdicionar = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableListaUsuarios = new javax.swing.JTable();
+        jTableListaFuncionarios = new javax.swing.JTable();
         btnRemover = new javax.swing.JButton();
         txtEmail = new javax.swing.JPasswordField();
         txtTelefone = new javax.swing.JPasswordField();
@@ -66,6 +78,8 @@ public class FuncionariosView extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        txtIDFuncionario = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -107,7 +121,7 @@ public class FuncionariosView extends javax.swing.JFrame {
             }
         });
 
-        jTableListaUsuarios.setModel(new javax.swing.table.DefaultTableModel(
+        jTableListaFuncionarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -118,12 +132,12 @@ public class FuncionariosView extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTableListaUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTableListaFuncionarios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTableListaUsuariosMouseClicked(evt);
+                jTableListaFuncionariosMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTableListaUsuarios);
+        jScrollPane1.setViewportView(jTableListaFuncionarios);
 
         btnRemover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/sign-delete.png"))); // NOI18N
         btnRemover.setText("Excluir");
@@ -177,6 +191,11 @@ public class FuncionariosView extends javax.swing.JFrame {
 
         jLabel10.setText("Cidade:");
 
+        jLabel11.setText("jLabel11");
+
+        txtIDFuncionario.setEditable(false);
+        txtIDFuncionario.setText("jTextField1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -189,8 +208,8 @@ public class FuncionariosView extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(75, 75, 75)
                         .addComponent(jLabel1)
-                        .addGap(0, 291, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 634, Short.MAX_VALUE)
+                        .addGap(0, 437, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -213,6 +232,10 @@ public class FuncionariosView extends javax.swing.JFrame {
                             .addComponent(txtCPF)
                             .addComponent(txtRua, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtBairro))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtIDFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnRemover, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -232,7 +255,9 @@ public class FuncionariosView extends javax.swing.JFrame {
                     .addComponent(btnAdicionar, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel2)))
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel11)
+                        .addComponent(txtIDFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
@@ -292,26 +317,21 @@ public class FuncionariosView extends javax.swing.JFrame {
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
         // TODO add your handling code here:
-        objFuncionario.setNomefuncionario(txtNome.getText());
-        objFuncionario.setLogin(txtLoginUsuario.getText());
-        String senha = new String(this.txtSenhaUsuario.getPassword());
-        objFuncionario.setEmailfuncionario(txtEmail.getText());;
-        objFuncionario.setTelefonefuncionario(txtTelefone.getText());
-        objFuncionario.setCpffuncionario(txtCPF.getText());
-        objFuncionario.setRuafuncionario(txtRua.getText());
-        objFuncionario.setBairrofuncionario(txtBairro.getText());
-        //jComboBoxCidade
+        guardarDados();
         
+        FuncionarioController objFuncionarioCon = new FuncionarioController(objFuncionario, null);
+        try{
+            if(objFuncionarioCon.incluirFuncionario(objFuncionario)== true){
+                CaixaDeDialogo.obterinstancia().exibirMensagem("Funcionário incluida");
+            }else{
+                CaixaDeDialogo.obterinstancia().exibirMensagem("Erro ao incluir funcionario");
+            }
+        }catch (Exception ex) {
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Erro" + ex);
+        }
         
-        
-        
-        
-        objFuncionario.setSenha(senha);
         fc.incluirFuncionario(objFuncionario);
-        CaixaDeDialogo.obterinstancia().exibirMensagem("Usuário cadastrado com Sucesso", "Cadastro", 'i');
-        
         fc.PreencheFuncionario();
-        
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
@@ -319,39 +339,40 @@ public class FuncionariosView extends javax.swing.JFrame {
         txtNome.setText("");
         txtLoginUsuario.setText("");
         txtSenhaUsuario.setText("");
+        txtBairro.setText("");
+        txtCPF.setText("");
+        txtEmail.setText("");
+        txtRua.setText("");
+        txtTelefone.setText("");
         txtNome.grabFocus();
     }//GEN-LAST:event_btnLimparActionPerformed
 
-    private void jTableListaUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableListaUsuariosMouseClicked
+    private void jTableListaFuncionariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableListaFuncionariosMouseClicked
         // TODO add your handling code here:
-        //pega a linha selecionada
-        int linhaSelecionada = jTableListaUsuarios.getSelectedRow();
-        // Primeira coluna da linha
-        String coluna1 = jTableListaUsuarios.getModel().getValueAt(linhaSelecionada, 1).toString();
-        //basta agora chamar o método buscar, passando o COLUNA1 como parâmetro de consulta
+       //pega a linha selecionada
+        int linhaSelecionada = jTableListaFuncionarios.getSelectedRow();
+   // Primeira coluna da linha
+   String coluna1 = jTableListaFuncionarios.getModel().getValueAt(linhaSelecionada, 0).toString();
+   //basta agora chamar o método buscar, passando o COLUNA1 como parâmetro de consulta
         objFuncionario = new Funcionario();
          
         objFuncionario = fc.buscarFuncionarios(coluna1);
          
-         txtLoginUsuario.setText(objFuncionario.getLogin());
-         txtSenhaUsuario.setText(objFuncionario.getSenha());
-         txtNome.setText(objFuncionario.getNomefuncionario());
-         
-
-    }//GEN-LAST:event_jTableListaUsuariosMouseClicked
+        fc.PreencheFuncionario();
+    }//GEN-LAST:event_jTableListaFuncionariosMouseClicked
 
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
         // TODO add your handling code here:
-        int linhaSelecionada = jTableListaUsuarios.getSelectedRow();
+        int linhaSelecionada = jTableListaFuncionarios.getSelectedRow();
         // Primeira coluna da linha
-        String coluna1 = jTableListaUsuarios.getModel().getValueAt(linhaSelecionada, 1).toString();
+        String coluna1 = jTableListaFuncionarios.getModel().getValueAt(linhaSelecionada, 1).toString();
         //basta agora chamar o método buscar, passando o COLUNA1 como parâmetro de consulta
         objFuncionario = new Funcionario();
-         
+
         objFuncionario = fc.buscarFuncionarios(coluna1);
-         
+
         fc.excluirFuncionario(objFuncionario);
-        
+
         fc.PreencheFuncionario();
     }//GEN-LAST:event_btnRemoverActionPerformed
 
@@ -375,6 +396,31 @@ public class FuncionariosView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBairroActionPerformed
 
+    
+    private void preencheCampos(){
+        try{
+            txtIDFuncionario.setText(String.valueOf(objFuncionario.getIdFuncionario()));
+            txtNome.setText(objFuncionario.getNomefuncionario());
+            objComboCidade.SetaComboBox(String.valueOf(objFuncionario.getIdcidade()));
+        }catch(Exception ex){
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Erro: " + ex.getMessage());
+        }
+    }
+    
+    private void guardarDados(){
+        objFuncionario.setIdFuncionario(Integer.parseInt(txtIDFuncionario.getText()));
+        objFuncionario.setNomefuncionario(txtNome.getText());
+        objFuncionario.setBairrofuncionario(txtBairro.getText());
+        objFuncionario.setCpffuncionario(txtCPF.getText());
+        objFuncionario.setEmailfuncionario(txtEmail.getText());
+        objFuncionario.setLogin(txtLoginUsuario.getText());
+        objFuncionario.setRuafuncionario(txtRua.getText());
+        objFuncionario.setSenha(txtSenhaUsuario.getText());
+        objFuncionario.setTelefonefuncionario(txtTelefone.getText());
+        
+        //objFuncionario.setBairrofuncionario(String.valueOf(objCidade.getIdestado()));
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -424,6 +470,7 @@ public class FuncionariosView extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBoxCidade;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -435,10 +482,11 @@ public class FuncionariosView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTable jTableListaUsuarios;
+    private javax.swing.JTable jTableListaFuncionarios;
     private javax.swing.JPasswordField txtBairro;
     private javax.swing.JPasswordField txtCPF;
     private javax.swing.JPasswordField txtEmail;
+    private javax.swing.JTextField txtIDFuncionario;
     private javax.swing.JTextField txtLoginUsuario;
     private javax.swing.JTextField txtNome;
     private javax.swing.JPasswordField txtRua;

@@ -80,7 +80,7 @@ public class FuncionarioController {
         
         try {
             stmt = con.prepareStatement("DELETE FROM funcionario WHERE idfuncionario = ? ");
-            stmt.setString(1, objFuncionario.getId());
+            stmt.setInt(1, objFuncionario.getIdFuncionario());
             
             stmt.executeUpdate();
             
@@ -110,7 +110,7 @@ public class FuncionarioController {
         try{
             
             String SQL = "";
-            SQL = " SELECT  f.nomefuncionario, f.login, f.senha";
+            SQL = " SELECT f.idfuncionario, f.nomefuncionario, f.login, f.senha";
             SQL += " FROM funcionarios f ";
             SQL += " ORDER BY f.nomefuncionario ";
             
