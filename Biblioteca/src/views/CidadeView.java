@@ -218,30 +218,28 @@ public class CidadeView extends javax.swing.JFrame {
             CaixaDeDialogo.obterinstancia().exibirMensagem("Erro" + ex);
         }
         
-        cc.incluirCidade(objCidade);
+        //cc.incluirCidade(objCidade);
         cc.PreencheCidade();
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         // TODO add your handling code here:
-        txtNome.setText("");
-        txtIDCidade.setText("");
-        txtNome.grabFocus();
+        limparTela();
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
         // TODO add your handling code here:
-        int linhaSelecionada = jTableCidade.getSelectedRow();
-        // Primeira coluna da linha
-        String coluna1 = jTableCidade.getModel().getValueAt(linhaSelecionada, 1).toString();
-        //basta agora chamar o método buscar, passando o COLUNA1 como parâmetro de consulta
-        objCidade = new Cidade();
-
-        objCidade = cc.buscarCidade(coluna1);
-
-        cc.excluirCidade(objCidade);
-
-        cc.PreencheCidade();
+        CidadeController objCidadeCon = new CidadeController(null, null);
+        try {
+            if (objCidadeCon.excluirCidade(objCidade) == true) {
+                CaixaDeDialogo.obterinstancia().exibirMensagem("Cidade removida com Sucesso!");
+            } else {
+                CaixaDeDialogo.obterinstancia().exibirMensagem("Erro ao remover Cidade!");
+            }
+        } catch (Exception ex) {
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Erro: " + ex.getMessage());
+        }
+        atualizarTabela();
     }//GEN-LAST:event_btnRemoverActionPerformed
 
     private void txtIDCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDCidadeActionPerformed
@@ -276,8 +274,30 @@ public class CidadeView extends javax.swing.JFrame {
     private void guardarDados(){
         //objCidade.setIdcidade(Integer.parseInt(txtIDCidade.getText()));
         objCidade.setNome(txtNome.getText());
-        objCidade.setIdestado(String.valueOf(objCidade.getIdestado()));
+        //objCidade.setIdestado(Integer.valueOf(objCidade.getIdestado()));
+        
+        Combos c = (Combos) jComboBoxEstado.getSelectedItem();
+        String idestado = c.getCodigo();
+        objCidade.setIdestado(Integer.parseInt(idestado));
     }
+    
+    private void atualizarTabela() {
+        try {
+
+            CidadeController cidadecon = new CidadeController(null, jTableCidade);
+            cidadecon.PreencheCidade();
+            limparTela();
+        } catch (Exception ex) {
+            CaixaDeDialogo.obterinstancia().exibirMensagem("ERRO:" + ex.getMessage());
+        }
+    }
+    
+    private void limparTela() {
+        txtNome.setText("");
+        txtIDCidade.setText("");
+        objComboUF.SetaComboBox("");
+        txtNome.grabFocus();
+}
     
     /**
      * @param args the command line arguments

@@ -45,7 +45,7 @@ public boolean incluirCidade(Cidade objCidade){
         try {
             stmt = con.prepareStatement("INSERT INTO cidade (nomecidade, idestado)VALUES(?,?)");
             stmt.setString(1, objCidade.getNome());
-            stmt.setString(2, objCidade.getIdestado());
+            stmt.setInt(2, objCidade.getIdestado());
             
             
             stmt.executeUpdate();
@@ -175,9 +175,9 @@ public models.Cidade buscarCidade(String id){
             //stm.executeQuery(SQL);
 
             try{
-                System.out.println("Vai Executar Conexão em buscar visitante");
+                System.out.println("Vai Executar Conexão em buscar cidades");
                 rs = ConnectionFactory.stmt.executeQuery(SQL);
-                System.out.println("Executou Conexão em buscar aluno");
+                System.out.println("Executou Conexão em buscar cidades");
                 
                objCidade = new models.Cidade();
                
@@ -185,7 +185,7 @@ public models.Cidade buscarCidade(String id){
                 {
                     objCidade.setIdcidade(rs.getInt(1));
                     objCidade.setNome(rs.getString(2));
-                    objCidade.setIdestado(rs.getString(3));
+                    objCidade.setIdestado(rs.getInt(3));
                 }
             }
 

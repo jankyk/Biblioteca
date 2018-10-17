@@ -26,16 +26,16 @@ import models.Funcionario;
 public class FuncionarioController {
     
     Funcionario objFuncionario;
-    JTable jTableListaUsuarios = null;
+    JTable jTableListaFuncionarios = null;
     
     /**
      *
      * @param objFuncionario
      * @param jTableListaUsuarios
      */
-    public FuncionarioController(Funcionario objFuncionario, JTable jTableListaUsuarios) {
+    public FuncionarioController(Funcionario objFuncionario, JTable jTableListaFuncionarios) {
         this.objFuncionario = objFuncionario;
-        this.jTableListaUsuarios = jTableListaUsuarios;
+        this.jTableListaFuncionarios = jTableListaFuncionarios;
     }
     
     public boolean incluirFuncionario(Funcionario objFuncionario){      
@@ -101,6 +101,7 @@ public class FuncionarioController {
         
         Vector<String> cabecalhos = new Vector<String>();
         Vector dadosTabela = new Vector();
+        cabecalhos.add("ID");
         cabecalhos.add("Nome");
         cabecalhos.add("Login");
         cabecalhos.add("Senha");
@@ -121,6 +122,7 @@ public class FuncionarioController {
                 linha.add(result.getString(1));
                 linha.add(result.getString(2));
                 linha.add(result.getString(3));
+                linha.add(result.getString(4));
                 dadosTabela.add(linha);
             }
         } catch (SQLException e) {
@@ -128,7 +130,7 @@ public class FuncionarioController {
             System.out.println(e);
         }
         
-        jTableListaUsuarios.setModel(new DefaultTableModel(dadosTabela, cabecalhos) {
+        jTableListaFuncionarios.setModel(new DefaultTableModel(dadosTabela, cabecalhos) {
             
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -138,12 +140,12 @@ public class FuncionarioController {
         });
         
         //Permite seleção de apenas uma linha da tabela
-        jTableListaUsuarios.setSelectionMode(0);
+        jTableListaFuncionarios.setSelectionMode(0);
         
         //Redimensiona as colunas de uma tabela
         TableColumn column = null;
         for (int i = 0; i < 3; i++) {
-            column = jTableListaUsuarios.getColumnModel().getColumn(i);
+            column = jTableListaFuncionarios.getColumnModel().getColumn(i);
             switch (1) {
                 case 0:
                 column.setPreferredWidth(80);
@@ -157,7 +159,7 @@ public class FuncionarioController {
             }
         }
         
-        jTableListaUsuarios.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+        jTableListaFuncionarios.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
             
             @Override
             public Component getTableCellRendererComponent (JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {

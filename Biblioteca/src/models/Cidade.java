@@ -13,7 +13,7 @@ public class Cidade {
     
     private int idcidade;
     private String nome;
-    private String idestado;
+    private int idestado;
 
     public int getIdcidade() {
         return idcidade;
@@ -31,11 +31,11 @@ public class Cidade {
         this.nome = nome;
     }
 
-    public String getIdestado() {
+    public int getIdestado() {
         return idestado;
     }
 
-    public void setIdestado(String idestado) {
+    public void setIdestado(int idestado) {
         this.idestado = idestado;
     }
     

@@ -64,7 +64,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtIDFuncionario" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtIDFuncionario" min="-2" pref="72" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="btnRemover" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -355,8 +355,10 @@
     <Component class="javax.swing.JTextField" name="txtIDFuncionario">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtIDFuncionarioActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -194,7 +194,11 @@ public class FuncionariosView extends javax.swing.JFrame {
         jLabel11.setText("jLabel11");
 
         txtIDFuncionario.setEditable(false);
-        txtIDFuncionario.setText("jTextField1");
+        txtIDFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIDFuncionarioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -235,7 +239,7 @@ public class FuncionariosView extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtIDFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtIDFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnRemover, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -395,6 +399,10 @@ public class FuncionariosView extends javax.swing.JFrame {
     private void txtBairroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBairroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBairroActionPerformed
+
+    private void txtIDFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDFuncionarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIDFuncionarioActionPerformed
 
     
     private void preencheCampos(){
