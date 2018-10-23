@@ -108,7 +108,7 @@ public void PreencheCidade() {
             
             while (result.next()) {
                 Vector<Object> linha = new Vector<Object>();
-                linha.add(result.getString(1));
+                linha.add(result.getInt(1));
                 linha.add(result.getString(2));
                 linha.add(result.getString(3));
                 dadosTabela.add(linha);
@@ -200,7 +200,7 @@ public models.Cidade buscarCidade(String id){
             return null;
         }
         
-        System.out.println ("Executou buscar aluno com sucesso");
+        System.out.println ("Executou buscar cidade com sucesso");
         return objCidade;
     }
 

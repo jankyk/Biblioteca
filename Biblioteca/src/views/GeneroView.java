@@ -219,6 +219,8 @@ public class GeneroView extends javax.swing.JFrame {
             }else{
                 CaixaDeDialogo.obterinstancia().exibirMensagem("Erro ao incluir genero");
             }
+            }else{
+                CaixaDeDialogo.obterinstancia().exibirMensagem("Campos em branco, verifique!");   
             }
         }catch (Exception ex) {
             CaixaDeDialogo.obterinstancia().exibirMensagem("Erro" + ex);

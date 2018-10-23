@@ -225,6 +225,8 @@ public class EstadoView extends javax.swing.JFrame {
             }else{
                 CaixaDeDialogo.obterinstancia().exibirMensagem("Erro ao incluir estado");
             }
+            }else{
+                CaixaDeDialogo.obterinstancia().exibirMensagem("Campos em branco, verifique!");   
             }
         }catch (Exception ex) {
             CaixaDeDialogo.obterinstancia().exibirMensagem("Erro" + ex);
