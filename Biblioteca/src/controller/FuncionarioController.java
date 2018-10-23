@@ -46,16 +46,15 @@ public class FuncionarioController {
         PreparedStatement stmt = null;
         
         try {
-            stmt = con.prepareStatement("INSERT INTO funcionarios (nomefuncionario, emailfuncionario, telefonefuncionario, cpffuncionario, ruafuncionario, bairrofuncionario, login, senha, nivelacesso)VALUES(?,?,?,?,?,?,?,?,?)");
+            stmt = con.prepareStatement("INSERT INTO funcionarios (nomefuncionario, emailfuncionario, telefonefuncionario, cpffuncionario, ruafuncionario, bairrofuncionario, login, senha)VALUES(?,?,?,?,?,?,?,?)");
             stmt.setString(1, objFuncionario.getNomefuncionario());
             stmt.setString(2, objFuncionario.getEmailfuncionario());
-            stmt.setString(3, objFuncionario.getTelefonefuncionario());
-            stmt.setString(4, objFuncionario.getCpffuncionario());
+            stmt.setInt(3, objFuncionario.getTelefonefuncionario());
+            stmt.setInt(4, objFuncionario.getCpffuncionario());
             stmt.setString(5, objFuncionario.getRuafuncionario());
             stmt.setString(6, objFuncionario.getBairrofuncionario());
             stmt.setString(7, objFuncionario.getLogin());
             stmt.setString(8, objFuncionario.getSenha());
-            stmt.setString(9, objFuncionario.getNivelacesso());
             
             
             stmt.executeUpdate();
@@ -80,7 +79,7 @@ public class FuncionarioController {
         
         try {
             stmt = con.prepareStatement("DELETE FROM funcionario WHERE idfuncionario = ? ");
-            stmt.setInt(1, objFuncionario.getIdFuncionario());
+            stmt.setInt(1, objFuncionario.getIdfuncionario());
             
             stmt.executeUpdate();
             
@@ -103,6 +102,12 @@ public class FuncionarioController {
         Vector dadosTabela = new Vector();
         cabecalhos.add("ID");
         cabecalhos.add("Nome");
+        cabecalhos.add("Email");
+        cabecalhos.add("Telefone");
+        cabecalhos.add("CPF");
+        cabecalhos.add("Rua");
+        cabecalhos.add("Bairro");
+        cabecalhos.add("Cidade");
         cabecalhos.add("Login");
         cabecalhos.add("Senha");
         
@@ -111,8 +116,9 @@ public class FuncionarioController {
         try{
             
             String SQL = "";
-            SQL = " SELECT f.idfuncionario, f.nomefuncionario, f.login, f.senha";
+            SQL = " SELECT f.idfuncionario, f.nomefuncionario, f.emailfuncionario, f.cpffuncionario, f.ruafuncionario, f.bairrofuncionario, c.nomecidade, f.login, f.senha";
             SQL += " FROM funcionarios f ";
+            SQL += " WHERE f.idcidade = c.idcidade";
             SQL += " ORDER BY f.nomefuncionario ";
             
             result = ConnectionFactory.stmt.executeQuery(SQL);
@@ -123,6 +129,11 @@ public class FuncionarioController {
                 linha.add(result.getString(2));
                 linha.add(result.getString(3));
                 linha.add(result.getString(4));
+                linha.add(result.getString(5));
+                linha.add(result.getString(6));
+                linha.add(result.getString(7));
+                linha.add(result.getString(8));
+                linha.add(result.getString(9));
                 dadosTabela.add(linha);
             }
         } catch (SQLException e) {
@@ -144,18 +155,40 @@ public class FuncionarioController {
         
         //Redimensiona as colunas de uma tabela
         TableColumn column = null;
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 9; i++) {
             column = jTableListaFuncionarios.getColumnModel().getColumn(i);
             switch (1) {
                 case 0:
                 column.setPreferredWidth(80);
                 break;
                 case 1:
-                column.setPreferredWidth(150);
+                column.setPreferredWidth(80);
                 break;
                 case 2:
-                column.setPreferredWidth(150);
+                column.setPreferredWidth(80);
                 break;
+                 case 3:
+                column.setPreferredWidth(80);
+                break;
+                 case 4:
+                column.setPreferredWidth(80);
+                break;
+                 case 5:
+                column.setPreferredWidth(80);
+                break;
+                 case 6:
+                column.setPreferredWidth(80);
+                break;
+                 case 7:
+                column.setPreferredWidth(80);
+                break;
+                 case 8:
+                column.setPreferredWidth(80);
+                break;
+                 case 9:
+                column.setPreferredWidth(80);
+                break;
+                
             }
         }
         
@@ -187,9 +220,9 @@ public class FuncionarioController {
             //stm.executeQuery(SQL);
 
             try{
-                System.out.println("Vai Executar Conexão em buscar visitante");
+                System.out.println("Vai Executar Conexão em buscar funcionarios");
                 rs = ConnectionFactory.stmt.executeQuery(SQL);
-                System.out.println("Executou Conexão em buscar aluno");
+                System.out.println("Executou Conexão em buscar funcionario");
                 
                objFuncionario = new models.Funcionario();
                
@@ -213,7 +246,7 @@ public class FuncionarioController {
             return null;
         }
         
-        System.out.println ("Executou buscar aluno com sucesso");
+        System.out.println ("Executou buscar funcionario com sucesso");
         return objFuncionario;
     }
 }

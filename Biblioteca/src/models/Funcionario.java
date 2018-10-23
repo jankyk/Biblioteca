@@ -14,28 +14,19 @@ public class Funcionario {
     private int idfuncionario;
     private String nomefuncionario;
     private String emailfuncionario;
-    private String telefonefuncionario;
-    private String cpffuncionario;
+    private int telefonefuncionario;
+    private int cpffuncionario;
     private String ruafuncionario;
     private String bairrofuncionario;
     private String login;
     private String senha;
-    private String nivelacesso;
-    private String idcidade;
+    private int idcidade;
 
-    public String getIdcidade() {
-        return idcidade;
-    }
-
-    public void setIdcidade(String idcidade) {
-        this.idcidade = idcidade;
-    }
-
-    public int getIdFuncionario() {
+    public int getIdfuncionario() {
         return idfuncionario;
     }
 
-    public void setIdFuncionario(int idfuncionario) {
+    public void setIdfuncionario(int idfuncionario) {
         this.idfuncionario = idfuncionario;
     }
 
@@ -55,19 +46,19 @@ public class Funcionario {
         this.emailfuncionario = emailfuncionario;
     }
 
-    public String getTelefonefuncionario() {
+    public int getTelefonefuncionario() {
         return telefonefuncionario;
     }
 
-    public void setTelefonefuncionario(String telefonefuncionario) {
+    public void setTelefonefuncionario(int telefonefuncionario) {
         this.telefonefuncionario = telefonefuncionario;
     }
 
-    public String getCpffuncionario() {
+    public int getCpffuncionario() {
         return cpffuncionario;
     }
 
-    public void setCpffuncionario(String cpffuncionario) {
+    public void setCpffuncionario(int cpffuncionario) {
         this.cpffuncionario = cpffuncionario;
     }
 
@@ -103,11 +94,13 @@ public class Funcionario {
         this.senha = senha;
     }
 
-    public String getNivelacesso() {
-        return nivelacesso;
+    public int getIdcidade() {
+        return idcidade;
     }
 
-    public void setNivelacesso(String nivelacesso) {
-        this.nivelacesso = nivelacesso;
+    public void setIdcidade(int idcidade) {
+        this.idcidade = idcidade;
     }
+
+    
 }
