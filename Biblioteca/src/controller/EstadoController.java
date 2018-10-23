@@ -161,6 +161,31 @@ public class EstadoController {
         });
     }
     
+    public boolean alterarEstado(){
+ 
+        ConnectionFactory.abreConexao();
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+ 
+        try {
+            stmt = con.prepareStatement("UPDATE estado SET nomeestado=?, uf=? WHERE idestado=?");
+            stmt.setString(1, objEstado.getNomeestado());
+            stmt.setString(2, objEstado.getUf());
+            stmt.setInt(3, objEstado.getIdestado());
+ 
+            stmt.executeUpdate();
+ 
+            return true;
+ 
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        }finally{
+            ConnectionFactory.closeConnection(con, stmt);
+        }
+ 
+    }
+    
     public models.Estado buscarEstado(String id){
         
         try {
