@@ -188,9 +188,9 @@ public class EstadoView extends javax.swing.JFrame {
         // TODO add your handling code here:
         guardarDados();
         
-        EstadoController objEstadoCon = new EstadoController(objEstado, null);
+        EstadoController objEstadocon = new EstadoController(objEstado, null);
         try{
-            if(objEstadoCon.incluirEstado(objEstado)== true){
+            if(objEstadocon.incluirEstado(objEstado)== true){
                 CaixaDeDialogo.obterinstancia().exibirMensagem("Estado incluido");
             }else{
                 CaixaDeDialogo.obterinstancia().exibirMensagem("Erro ao incluir estado");
@@ -204,25 +204,22 @@ public class EstadoView extends javax.swing.JFrame {
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         // TODO add your handling code here:
-        txtUF.setText("");
-        txtNome.setText("");
-        txtIDEstado.setText("");
-        txtNome.grabFocus();
+        limparTela();
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
         // TODO add your handling code here:
-        int linhaSelecionada = jTableEstado.getSelectedRow();
-        // Primeira coluna da linha
-        String coluna1 = jTableEstado.getModel().getValueAt(linhaSelecionada, 1).toString();
-        //basta agora chamar o método buscar, passando o COLUNA1 como parâmetro de consulta
-        objEstado = new Estado();
-
-        objEstado = ec.buscarEstado(coluna1);
-
-        ec.excluirEstado(objEstado);
-
-        ec.PreencheEstado();
+        EstadoController objEstadocon = new EstadoController(null, null);
+        try {
+            if (objEstadocon.excluirEstado(objEstado) == true) {
+                CaixaDeDialogo.obterinstancia().exibirMensagem("Estado removido com Sucesso!");
+            } else {
+                CaixaDeDialogo.obterinstancia().exibirMensagem("Erro ao remover estado!");
+            }
+        } catch (Exception ex) {
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Erro: " + ex.getMessage());
+        }
+        atualizarTabela();
     }//GEN-LAST:event_btnRemoverActionPerformed
 
     private void jTableEstadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableEstadoMouseClicked
@@ -255,6 +252,25 @@ public class EstadoView extends javax.swing.JFrame {
         objEstado.setNomeestado(txtNome.getText());
         objEstado.setUf(txtUF.getText());
     }
+    
+    private void atualizarTabela() {
+        try {
+
+            EstadoController estadocon = new EstadoController(null, jTableEstado);
+            estadocon.PreencheEstado();
+            limparTela();
+        } catch (Exception ex) {
+            CaixaDeDialogo.obterinstancia().exibirMensagem("ERRO:" + ex.getMessage());
+        }
+    }
+    
+    private void limparTela() {
+        txtUF.setText("");
+        txtNome.setText("");
+        txtIDEstado.setText("");
+        txtNome.grabFocus();
+}
+    
     /**
      * @param args the command line arguments
      */
