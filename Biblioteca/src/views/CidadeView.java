@@ -211,6 +211,7 @@ public class CidadeView extends javax.swing.JFrame {
         try{
             if(objCidadeCon.incluirCidade(objCidade)== true){
                 CaixaDeDialogo.obterinstancia().exibirMensagem("Cidade incluida");
+                atualizarTabela();
             }else{
                 CaixaDeDialogo.obterinstancia().exibirMensagem("Erro ao incluir cidade");
             }
@@ -218,7 +219,6 @@ public class CidadeView extends javax.swing.JFrame {
             CaixaDeDialogo.obterinstancia().exibirMensagem("Erro" + ex);
         }
         
-        //cc.incluirCidade(objCidade);
         cc.PreencheCidade();
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
@@ -297,6 +297,12 @@ public class CidadeView extends javax.swing.JFrame {
         txtIDCidade.setText("");
         objComboUF.SetaComboBox("");
         txtNome.grabFocus();
+}
+    
+    private void validacampos() {
+        if(txtNome.getText()==null || txtNome.getText().trim().equals("")){
+        System.out.println("Preencha o nome da cidade");
+        }
 }
     
     /**
