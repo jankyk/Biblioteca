@@ -20,7 +20,7 @@ public class CidadeView extends javax.swing.JFrame {
     
     Combos objComboUF;
     Cidade objCidade = new Cidade();
-    CidadeController cc = new CidadeController(objCidade, null);
+    //CidadeController cc = new CidadeController(objCidade, null);
     
     
 
@@ -220,7 +220,7 @@ public class CidadeView extends javax.swing.JFrame {
             CaixaDeDialogo.obterinstancia().exibirMensagem("Erro" + ex);
         }
         
-        cc.PreencheCidade();
+        //cc.PreencheCidade();
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
@@ -255,8 +255,8 @@ public class CidadeView extends javax.swing.JFrame {
    String coluna1 = jTableCidade.getModel().getValueAt(linhaSelecionada, 0).toString();
    //basta agora chamar o método buscar, passando o COLUNA1 como parâmetro de consulta
         objCidade = new Cidade();
-         
-        objCidade = cc.buscarCidade(coluna1);
+        CidadeController objCidadeCon = new CidadeController(null, null);
+        objCidade = objCidadeCon.buscarCidade(coluna1);
          
         preencheCampos();
     }//GEN-LAST:event_jTableCidadeMouseClicked
