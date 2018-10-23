@@ -154,6 +154,30 @@ public class GeneroController {
         });
     }
     
+    public boolean alterarGenero(){
+ 
+        ConnectionFactory.abreConexao();
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+ 
+        try {
+            stmt = con.prepareStatement("UPDATE genero SET nomegenero=? WHERE idgenero=?");
+            stmt.setString(1, objGenero.getNomegenero());
+            stmt.setInt(2, objGenero.getIdgenero());
+ 
+            stmt.executeUpdate();
+ 
+            return true;
+ 
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        }finally{
+            ConnectionFactory.closeConnection(con, stmt);
+        }
+ 
+    }
+    
     public models.Genero buscarGenero(String id){
         
         try {

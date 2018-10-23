@@ -207,6 +207,7 @@ public class GeneroView extends javax.swing.JFrame {
         }
         
         gc.PreencheGenero();
+        limparTela();
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
@@ -227,10 +228,26 @@ public class GeneroView extends javax.swing.JFrame {
             CaixaDeDialogo.obterinstancia().exibirMensagem("Erro: " + ex.getMessage());
         }
         atualizarTabela();
+        limparTela();
     }//GEN-LAST:event_btnRemoverActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         // TODO add your handling code here:
+        guardarDados();
+
+            GeneroController objGeneroCon = new GeneroController(objGenero, null);
+            try {
+                if (objGeneroCon.alterarGenero()== true) {
+                    CaixaDeDialogo.obterinstancia().exibirMensagem("Genero alterado com Sucesso!");
+                } else {
+                    CaixaDeDialogo.obterinstancia().exibirMensagem("Erro ao alterar genero!");
+                }
+            } catch (Exception ex) {
+                CaixaDeDialogo.obterinstancia().exibirMensagem("Erro: " + ex.getMessage());
+            }
+
+            atualizarTabela();
+            limparTela();
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void jTableGeneroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableGeneroMouseClicked
