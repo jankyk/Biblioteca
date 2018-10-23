@@ -25,9 +25,9 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemAlunos">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/icons/user-male-alt.png"/>
+                  <Image iconType="3" name="/icons/map-map-marker.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Alunos"/>
+                <Property name="text" type="java.lang.String" value="Cidade"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemAlunosActionPerformed"/>
@@ -36,12 +36,23 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemUsuarios">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/icons/user-id.png"/>
+                  <Image iconType="3" name="/icons/map.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Usu&#xe1;rios"/>
+                <Property name="text" type="java.lang.String" value="Estado"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemUsuariosActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/icons/address-book.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Genero"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem2ActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

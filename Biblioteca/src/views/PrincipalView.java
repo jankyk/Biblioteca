@@ -37,6 +37,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItemAlunos = new javax.swing.JMenuItem();
         jMenuItemUsuarios = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -56,8 +57,8 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/notepad.png"))); // NOI18N
         jMenu1.setText("Cadastros");
 
-        jMenuItemAlunos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/user-male-alt.png"))); // NOI18N
-        jMenuItemAlunos.setText("Alunos");
+        jMenuItemAlunos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/map-map-marker.png"))); // NOI18N
+        jMenuItemAlunos.setText("Cidade");
         jMenuItemAlunos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemAlunosActionPerformed(evt);
@@ -65,14 +66,23 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItemAlunos);
 
-        jMenuItemUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/user-id.png"))); // NOI18N
-        jMenuItemUsuarios.setText("Usuários");
+        jMenuItemUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/map.png"))); // NOI18N
+        jMenuItemUsuarios.setText("Estado");
         jMenuItemUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemUsuariosActionPerformed(evt);
             }
         });
         jMenu1.add(jMenuItemUsuarios);
+
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/address-book.png"))); // NOI18N
+        jMenuItem2.setText("Genero");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
 
         jMenuBar1.add(jMenu1);
 
@@ -101,8 +111,8 @@ public class PrincipalView extends javax.swing.JFrame {
 
     private void jMenuItemAlunosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAlunosActionPerformed
         // TODO add your handling code here:
-        //AlunoView av = new AlunoView();
-        //av.setVisible(true);
+        CidadeView cv = new CidadeView();
+        cv.setVisible(true);
     }//GEN-LAST:event_jMenuItemAlunosActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
@@ -112,9 +122,15 @@ public class PrincipalView extends javax.swing.JFrame {
 
     private void jMenuItemUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemUsuariosActionPerformed
         // TODO add your handling code here:
-        FuncionariosView pv = new FuncionariosView();
-        pv.setVisible(true);
+        EstadoView ev = new EstadoView();
+        ev.setVisible(true);
     }//GEN-LAST:event_jMenuItemUsuariosActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        GeneroView gv = new GeneroView();
+        gv.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -163,6 +179,7 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItemAlunos;
     private javax.swing.JMenuItem jMenuItemUsuarios;
     // End of variables declaration//GEN-END:variables
