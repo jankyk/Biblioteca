@@ -197,10 +197,12 @@ public class GeneroView extends javax.swing.JFrame {
         
         GeneroController objGenerocon = new GeneroController(objGenero, null);
         try{
+            if(validarDados() == true){
             if(objGenerocon.incluirGenero(objGenero)== true){
                 CaixaDeDialogo.obterinstancia().exibirMensagem("Genero incluido");
             }else{
                 CaixaDeDialogo.obterinstancia().exibirMensagem("Erro ao incluir genero");
+            }
             }
         }catch (Exception ex) {
             CaixaDeDialogo.obterinstancia().exibirMensagem("Erro" + ex);
@@ -295,6 +297,22 @@ public class GeneroView extends javax.swing.JFrame {
         txtNome.setText("");;
         txtNome.grabFocus();
 }
+    
+    private boolean validarDados() {
+        try {
+            //VALIDAR O CAMPOS DA TELA
+            //RETURN FALSE SE ALGUM CAMPO NAO ESTA PREENCHIDO CORRETAMENTE
+           if( 
+            txtNome.getText().equals("")) {
+            return false;
+           } else {
+            return true;
+           }
+        } catch (Exception ex) {
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Erro: " + ex.getMessage());
+            return false;
+        }
+    }
     
     /**
      * @param args the command line arguments

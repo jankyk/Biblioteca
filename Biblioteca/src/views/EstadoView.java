@@ -203,10 +203,12 @@ public class EstadoView extends javax.swing.JFrame {
         
         EstadoController objEstadocon = new EstadoController(objEstado, null);
         try{
+            if(validarDados() == true){
             if(objEstadocon.incluirEstado(objEstado)== true){
                 CaixaDeDialogo.obterinstancia().exibirMensagem("Estado incluido");
             }else{
                 CaixaDeDialogo.obterinstancia().exibirMensagem("Erro ao incluir estado");
+            }
             }
         }catch (Exception ex) {
             CaixaDeDialogo.obterinstancia().exibirMensagem("Erro" + ex);
@@ -302,6 +304,23 @@ public class EstadoView extends javax.swing.JFrame {
         txtIDEstado.setText("");
         txtNome.grabFocus();
 }
+    
+    private boolean validarDados() {
+        try {
+            //VALIDAR O CAMPOS DA TELA
+            //RETURN FALSE SE ALGUM CAMPO NAO ESTA PREENCHIDO CORRETAMENTE
+           if( 
+            txtNome.getText().equals("") ||
+            txtUF.getText().equals("")) {
+            return false;
+           } else {
+            return true;
+           }
+        } catch (Exception ex) {
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Erro: " + ex.getMessage());
+            return false;
+        }
+    }
     
     /**
      * @param args the command line arguments
