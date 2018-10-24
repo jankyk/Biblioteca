@@ -117,7 +117,7 @@ public class FuncionarioController {
             
             String SQL = "";
             SQL = " SELECT f.idfuncionario, f.nomefuncionario, f.emailfuncionario, f.cpffuncionario, f.ruafuncionario, f.bairrofuncionario, c.nomecidade, f.login, f.senha";
-            SQL += " FROM funcionarios f ";
+            SQL += " FROM funcionarios f, cidade c ";
             SQL += " WHERE f.idcidade = c.idcidade";
             SQL += " ORDER BY f.nomefuncionario ";
             
@@ -133,7 +133,7 @@ public class FuncionarioController {
                 linha.add(result.getString(6));
                 linha.add(result.getString(7));
                 linha.add(result.getString(8));
-                linha.add(result.getString(9));
+                //linha.add(result.getString(9));
                 dadosTabela.add(linha);
             }
         } catch (SQLException e) {
@@ -214,7 +214,7 @@ public class FuncionarioController {
             ResultSet rs = null;
 
             String SQL = "";
-            SQL = " SELECT login, senha, nomefuncionario";
+            SQL = " SELECT login, nomefuncionario";
             SQL += " FROM funcionarios";
             SQL += " WHERE idfuncionario = '" + id + "'";
             //stm.executeQuery(SQL);

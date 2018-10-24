@@ -162,6 +162,31 @@ public void PreencheCidade() {
         });
     }
 
+    public boolean alterarCidade(){
+ 
+        ConnectionFactory.abreConexao();
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+ 
+        try {
+            stmt = con.prepareStatement("UPDATE cidade SET nomecidade=?, idestado=? WHERE idcidade=?");
+            stmt.setString(1, objCidade.getNome());
+            stmt.setInt(2, objCidade.getIdestado());
+            stmt.setInt(3, objCidade.getIdcidade());
+ 
+            stmt.executeUpdate();
+ 
+            return true;
+ 
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        }finally{
+            ConnectionFactory.closeConnection(con, stmt);
+        }
+ 
+    }
+
 public models.Cidade buscarCidade(String id){
         
         try {

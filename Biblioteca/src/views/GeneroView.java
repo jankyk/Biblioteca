@@ -209,11 +209,12 @@ public class GeneroView extends javax.swing.JFrame {
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
         // TODO add your handling code here:
+        try{
+            if(validarDados() == true){
         guardarDados();
         
         GeneroController objGenerocon = new GeneroController(objGenero, null);
-        try{
-            if(validarDados() == true){
+        
             if(objGenerocon.incluirGenero(objGenero)== true){
                 CaixaDeDialogo.obterinstancia().exibirMensagem("Genero incluido");
             }else{

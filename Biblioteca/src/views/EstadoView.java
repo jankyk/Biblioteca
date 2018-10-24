@@ -215,11 +215,12 @@ public class EstadoView extends javax.swing.JFrame {
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
         // TODO add your handling code here:
+        try{
+            if(validarDados() == true){
         guardarDados();
         
         EstadoController objEstadocon = new EstadoController(objEstado, null);
-        try{
-            if(validarDados() == true){
+        
             if(objEstadocon.incluirEstado(objEstado)== true){
                 CaixaDeDialogo.obterinstancia().exibirMensagem("Estado incluido");
             }else{

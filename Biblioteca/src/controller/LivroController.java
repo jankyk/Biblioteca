@@ -69,7 +69,7 @@ public class LivroController {
         PreparedStatement stmt = null;
         
         try {
-            stmt = con.prepareStatement("DELETE FROM livros WHERE idgenero = ? ");
+            stmt = con.prepareStatement("DELETE FROM livros WHERE idlivro = ? ");
             stmt.setInt(1, objLivro.getIdlivro());
             
             stmt.executeUpdate();
@@ -195,9 +195,10 @@ public class LivroController {
             ResultSet rs = null;
 
             String SQL = "";
-            SQL = " SELECT idlivro, titulolivro";
-            SQL += " FROM livros";
-            SQL += " WHERE idlivro = '" + id + "'";
+            SQL = " SELECT l.idlivro, l.titulolivro, l.autorlivro, g.nomegenero";
+            SQL += " FROM livros l, genero g";
+            SQL += " WHERE l.idgenero = g.idgenero";
+            SQL += " AND idlivro = '" + id + "'";
             //stm.executeQuery(SQL);
 
             try{
