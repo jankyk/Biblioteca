@@ -14,8 +14,8 @@ public class Funcionario {
     private int idfuncionario;
     private String nomefuncionario;
     private String emailfuncionario;
-    private int telefonefuncionario;
-    private int cpffuncionario;
+    private String telefonefuncionario;
+    private String cpffuncionario;
     private String ruafuncionario;
     private String bairrofuncionario;
     private String login;
@@ -46,19 +46,19 @@ public class Funcionario {
         this.emailfuncionario = emailfuncionario;
     }
 
-    public int getTelefonefuncionario() {
+    public String getTelefonefuncionario() {
         return telefonefuncionario;
     }
 
-    public void setTelefonefuncionario(int telefonefuncionario) {
+    public void setTelefonefuncionario(String telefonefuncionario) {
         this.telefonefuncionario = telefonefuncionario;
     }
 
-    public int getCpffuncionario() {
+    public String getCpffuncionario() {
         return cpffuncionario;
     }
 
-    public void setCpffuncionario(int cpffuncionario) {
+    public void setCpffuncionario(String cpffuncionario) {
         this.cpffuncionario = cpffuncionario;
     }
 

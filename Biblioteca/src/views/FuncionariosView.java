@@ -429,12 +429,12 @@ public class FuncionariosView extends javax.swing.JFrame {
             txtIDFuncionario.setText(String.valueOf(objFuncionario.getIdfuncionario()));
             txtNome.setText(objFuncionario.getNomefuncionario());
             txtBairro.setText(objFuncionario.getBairrofuncionario());
-            txtCPF.setText(String.valueOf(objFuncionario.getCpffuncionario()));
+            txtCPF.setText(objFuncionario.getCpffuncionario());
             txtEmail.setText(objFuncionario.getEmailfuncionario());
             txtLoginUsuario.setText(objFuncionario.getLogin());
             txtRua.setText(objFuncionario.getRuafuncionario());
             txtSenhaUsuario.setText(objFuncionario.getSenha());
-            txtTelefone.setText(String.valueOf(objFuncionario.getTelefonefuncionario()));
+            txtTelefone.setText(objFuncionario.getTelefonefuncionario());
             objComboCidade.SetaComboBox(String.valueOf(objFuncionario.getIdcidade()));
         }catch(Exception ex){
             CaixaDeDialogo.obterinstancia().exibirMensagem("Erro: " + ex.getMessage());
@@ -445,12 +445,12 @@ public class FuncionariosView extends javax.swing.JFrame {
         objFuncionario.setIdfuncionario(Integer.parseInt(txtIDFuncionario.getText()));
         objFuncionario.setNomefuncionario(txtNome.getText());
         objFuncionario.setBairrofuncionario(txtBairro.getText());
-        objFuncionario.setCpffuncionario(Integer.parseInt(txtCPF.getText()));
+        objFuncionario.setCpffuncionario(txtCPF.getText());
         objFuncionario.setEmailfuncionario(txtEmail.getText());
         objFuncionario.setLogin(txtLoginUsuario.getText());
         objFuncionario.setRuafuncionario(txtRua.getText());
         objFuncionario.setSenha(txtSenhaUsuario.getText());
-        objFuncionario.setTelefonefuncionario(Integer.parseInt(txtTelefone.getText()));
+        objFuncionario.setTelefonefuncionario(txtTelefone.getText());
         
         Combos c = (Combos) jComboBoxCidade.getSelectedItem();
         String idcidade = c.getCodigo();
@@ -471,6 +471,7 @@ public class FuncionariosView extends javax.swing.JFrame {
     }
     
     private void limparTela() {
+        txtIDFuncionario.setText("");
         txtNome.setText("");
         txtLoginUsuario.setText("");
         txtSenhaUsuario.setText("");

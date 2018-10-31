@@ -46,13 +46,14 @@ public class FuncionarioController {
         PreparedStatement stmt = null;
         
         try {
-            stmt = con.prepareStatement("INSERT INTO funcionarios (nomefuncionario, emailfuncionario, telefonefuncionario, cpffuncionario, ruafuncionario, bairrofuncionario, login, senha)VALUES(?,?,?,?,?,?,?,?)");
+            stmt = con.prepareStatement("INSERT INTO funcionarios (nomefuncionario, emailfuncionario, telefonefuncionario, cpffuncionario, ruafuncionario, bairrofuncionario, idcidade, login, senha)VALUES(?,?,?,?,?,?,?,?,?)");
             stmt.setString(1, objFuncionario.getNomefuncionario());
             stmt.setString(2, objFuncionario.getEmailfuncionario());
-            stmt.setInt(3, objFuncionario.getTelefonefuncionario());
-            stmt.setInt(4, objFuncionario.getCpffuncionario());
+            stmt.setString(3, objFuncionario.getTelefonefuncionario());
+            stmt.setString(4, objFuncionario.getCpffuncionario());
             stmt.setString(5, objFuncionario.getRuafuncionario());
             stmt.setString(6, objFuncionario.getBairrofuncionario());
+            stmt.setInt(6, objFuncionario.getIdcidade());
             stmt.setString(7, objFuncionario.getLogin());
             stmt.setString(8, objFuncionario.getSenha());
             
@@ -116,7 +117,7 @@ public class FuncionarioController {
         try{
             
             String SQL = "";
-            SQL = " SELECT f.idfuncionario, f.nomefuncionario, f.emailfuncionario, f.cpffuncionario, f.ruafuncionario, f.bairrofuncionario, c.nomecidade, f.login, f.senha";
+            SQL = " SELECT f.idfuncionario, f.nomefuncionario, f.emailfuncionario, f.telefonefuncionario, f.cpffuncionario, f.ruafuncionario, f.bairrofuncionario, c.nomecidade, f.login, f.senha";
             SQL += " FROM funcionarios f, cidade c ";
             SQL += " WHERE f.idcidade = c.idcidade";
             SQL += " ORDER BY f.nomefuncionario ";
@@ -133,7 +134,8 @@ public class FuncionarioController {
                 linha.add(result.getString(6));
                 linha.add(result.getString(7));
                 linha.add(result.getString(8));
-                //linha.add(result.getString(9));
+                linha.add(result.getString(9));
+                linha.add(result.getString(10));
                 dadosTabela.add(linha);
             }
         } catch (SQLException e) {
@@ -214,8 +216,8 @@ public class FuncionarioController {
             ResultSet rs = null;
 
             String SQL = "";
-            SQL = " SELECT login, nomefuncionario";
-            SQL += " FROM funcionarios";
+            SQL = " SELECT f.idfuncionario, f.nomefuncionario, f.emailfuncionario, f.telefonefuncionario, f.cpffuncionario, f.ruafuncionario, f.bairrofuncionario, f.idcidade, f.login, f.senha";
+            SQL += " FROM funcionarios f";
             SQL += " WHERE idfuncionario = '" + id + "'";
             //stm.executeQuery(SQL);
 
@@ -228,9 +230,16 @@ public class FuncionarioController {
                
                 if(rs.next() == true)
                 {
-                    objFuncionario.setLogin(rs.getString(1));
-                    objFuncionario.setSenha(rs.getString(2));
-                    objFuncionario.setNomefuncionario(rs.getString(3));
+                    objFuncionario.setIdfuncionario(rs.getInt(1));
+                    objFuncionario.setNomefuncionario(rs.getString(2));
+                    objFuncionario.setEmailfuncionario(rs.getString(3));
+                    objFuncionario.setTelefonefuncionario(rs.getString(4));
+                    objFuncionario.setCpffuncionario(rs.getString(5));
+                    objFuncionario.setRuafuncionario(rs.getString(6));
+                    objFuncionario.setBairrofuncionario(rs.getString(7));
+                    objFuncionario.setIdcidade(rs.getInt(8));
+                    objFuncionario.setLogin(rs.getString(9));
+                    objFuncionario.setSenha(rs.getString(10));
 
                 }
             }
