@@ -113,6 +113,9 @@ public class LivroController {
                 Vector<Object> linha = new Vector<Object>();
                 linha.add(result.getString(1));
                 linha.add(result.getString(2));
+                linha.add(result.getString(3));
+                linha.add(result.getString(4));
+                linha.add(result.getString(5));
                 dadosTabela.add(linha);
             }
         } catch (SQLException e) {
@@ -134,13 +137,22 @@ public class LivroController {
         
         //Redimensiona as colunas de uma tabela
         TableColumn column = null;
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 5; i++) {
             column = jTableLivro.getColumnModel().getColumn(i);
             switch (1) {
                 case 0:
                 column.setPreferredWidth(80);
                 break;
                 case 1:
+                column.setPreferredWidth(150);
+                break;
+                case 2:
+                column.setPreferredWidth(150);
+                break;
+                case 3:
+                column.setPreferredWidth(150);
+                break;
+                case 4:
                 column.setPreferredWidth(150);
                 break;
             }

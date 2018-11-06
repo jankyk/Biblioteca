@@ -20,12 +20,12 @@ import tools.CaixaDeDialogo;
  *
  * @author luis_
  */
-public class RelatorioCidadesView extends javax.swing.JFrame {
+public class RelatorioClientesView extends javax.swing.JFrame {
 
     /**
      * Creates new form RelCidades
      */
-    public RelatorioCidadesView() {
+    public RelatorioClientesView() {
         initComponents();
     }
 
@@ -40,7 +40,7 @@ public class RelatorioCidadesView extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtUf = new javax.swing.JTextField();
+        txtNome = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
 
@@ -49,11 +49,11 @@ public class RelatorioCidadesView extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Relatório de Cidades");
 
-        jLabel2.setText("UF:");
+        jLabel2.setText("Nome:");
 
-        txtUf.addActionListener(new java.awt.event.ActionListener() {
+        txtNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUfActionPerformed(evt);
+                txtNomeActionPerformed(evt);
             }
         });
 
@@ -78,7 +78,7 @@ public class RelatorioCidadesView extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtUf, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 162, Short.MAX_VALUE))
                     .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
@@ -93,7 +93,7 @@ public class RelatorioCidadesView extends javax.swing.JFrame {
                 .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtUf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 179, Short.MAX_VALUE)
                 .addComponent(btnPesquisar)
                 .addContainerGap())
@@ -102,27 +102,28 @@ public class RelatorioCidadesView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtUfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUfActionPerformed
+    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtUfActionPerformed
+    }//GEN-LAST:event_txtNomeActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         // TODO add your handling code here:
         try{
-            String wUf = txtUf.getText();
+            String wNome = txtNome.getText();
             
             Map<String, Object> parametros = new HashMap<String, Object>();
-            parametros.put("UF", wUf);
+            parametros.put("Nome", wNome);
             
             RelatoriosController objRelatorioCon = new RelatoriosController();            
-            String wSQL = "SELECT c.idcidade, c.nomecidade, e.uf "
-                        + "FROM cidade c, estado e "
-                        + "WHERE e.idestado = c.idestado "
-                        + "AND e.uf = '"+ wUf +"' ";
+            String wSQL = "SELECT cl.idcliente, cl.nomecliente, cl.emailcliente, cl.cpfcliente, cl.telefonecliente, c.nomecidade, e.nomeestado "
+                        + "FROM clientes cl, cidade c, estado e "
+                        + "WHERE cl.idcidade = c.idcidade "
+                        + "AND c.idestado = e.idestado "
+                        + "AND cl.nomecliente = '"+ wNome +"' ";
             
             ResultSet resultSet = objRelatorioCon.relatorioCidades(wSQL);//Buscar os dados do relatório
             JRResultSetDataSource relResult = new JRResultSetDataSource(resultSet);//Passa um resultSet para a fonte de dados do relatório
-            JasperPrint jpPrint = JasperFillManager.fillReport("ireport/relatoriocidades.jasper", parametros, relResult);//Prepara o relatório para ser impresso, recebe o gerenciador JASPER
+            JasperPrint jpPrint = JasperFillManager.fillReport("ireport/relatorioclientes.jasper", parametros, relResult);//Prepara o relatório para ser impresso, recebe o gerenciador JASPER
             JasperViewer jpViewer = new JasperViewer(jpPrint, false); //
             jpViewer.setVisible(true);//abre o relatório para visualização
             jpViewer.toFront();//define o form a frente da aplicação
@@ -149,14 +150,18 @@ public class RelatorioCidadesView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RelatorioCidadesView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RelatorioClientesView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RelatorioCidadesView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RelatorioClientesView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RelatorioCidadesView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RelatorioClientesView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RelatorioCidadesView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RelatorioClientesView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -165,7 +170,7 @@ public class RelatorioCidadesView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RelatorioCidadesView().setVisible(true);
+                new RelatorioClientesView().setVisible(true);
             }
         });
     }
@@ -175,6 +180,6 @@ public class RelatorioCidadesView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField txtUf;
+    private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
 }
