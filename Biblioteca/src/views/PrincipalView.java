@@ -33,6 +33,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jMenuItem1 = new javax.swing.JMenuItem();
         btnSair = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItemAlunos = new javax.swing.JMenuItem();
@@ -51,6 +52,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela Principal");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         btnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/sign-error.png"))); // NOI18N
         btnSair.setText("Sair");
@@ -59,6 +61,8 @@ public class PrincipalView extends javax.swing.JFrame {
                 btnSairActionPerformed(evt);
             }
         });
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gifs/bibliotecaria-71485.gif"))); // NOI18N
 
         jMenuBar1.setMaximumSize(new java.awt.Dimension(800, 600));
 
@@ -124,6 +128,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/file-excel.png"))); // NOI18N
         jMenu2.setText("Relatórios");
 
+        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/map-map-marker.png"))); // NOI18N
         jMenuItem6.setText("Relatório Cidades");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,6 +137,7 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem6);
 
+        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/address-book-alt.png"))); // NOI18N
         jMenuItem7.setText("Relatório Livros");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,6 +146,7 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem7);
 
+        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/user-id.png"))); // NOI18N
         jMenuItem8.setText("Relatório Clientes");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,7 +155,8 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem8);
 
-        jMenuItem9.setText("Relatório 4");
+        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/box-out.png"))); // NOI18N
+        jMenuItem9.setText("Relatório Movimentação");
         jMenu2.add(jMenuItem9);
 
         jMenuBar1.add(jMenu2);
@@ -163,11 +171,17 @@ public class PrincipalView extends javax.swing.JFrame {
                 .addContainerGap(511, Short.MAX_VALUE)
                 .addComponent(btnSair)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(199, 199, 199)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(330, Short.MAX_VALUE)
+                .addGap(68, 68, 68)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addComponent(btnSair)
                 .addContainerGap())
         );
@@ -279,6 +293,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSair;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;

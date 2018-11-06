@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorioclientes" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="772d3c10-ee04-4dd9-8925-ab7316f6f0bf">
 	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="148"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<queryString>
 		<![CDATA[SELECT cl.idcliente, cl.nomecliente, cl.emailcliente, cl.cpfcliente, cl.telefonecliente, c.nomecidade, e.nomeestado
@@ -20,13 +20,21 @@ AND c.idestado = e.idestado]]>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch"/>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="314" y="0" width="174" height="26" uuid="3d426132-f3a4-41e6-bb98-06b498880eaa"/>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[Relatório de Clientes]]></text>
+			</staticText>
+		</band>
 	</title>
 	<pageHeader>
 		<band height="35" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch">
+		<band height="48" splitType="Stretch">
 			<staticText>
 				<reportElement x="65" y="0" width="119" height="20" uuid="ab4131f2-9bac-458c-937d-6d2585abda3e"/>
 				<text><![CDATA[Nome]]></text>
@@ -55,10 +63,13 @@ AND c.idestado = e.idestado]]>
 				<reportElement x="688" y="0" width="114" height="20" uuid="2e0453c2-5e1e-4243-b326-f53e5ab05d07"/>
 				<text><![CDATA[Estado]]></text>
 			</staticText>
+			<line>
+				<reportElement x="0" y="35" width="802" height="1" uuid="e7dc82d1-f1d7-4072-b43f-cd7a4b196350"/>
+			</line>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch">
+		<band height="29" splitType="Stretch">
 			<textField>
 				<reportElement x="65" y="0" width="119" height="20" uuid="2d0452e4-e64b-40db-8236-3ad791662d48"/>
 				<textFieldExpression><![CDATA[$F{nomecliente}]]></textFieldExpression>

@@ -15,6 +15,7 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
 import tools.CaixaDeDialogo;
+import tools.Formatacao;
 
 /**
  *
@@ -27,6 +28,9 @@ public class RelatorioClientesView extends javax.swing.JFrame {
      */
     public RelatorioClientesView() {
         initComponents();
+        
+        txtNascimento.setValue("");
+        Formatacao.colocaMascara(txtNascimento, "##/##/####");
     }
 
     /**
@@ -40,24 +44,19 @@ public class RelatorioClientesView extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtNome = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
+        txtNascimento = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setText("Relatório de Cidades");
+        jLabel1.setText("Relatório de Clientes");
 
-        jLabel2.setText("Nome:");
+        jLabel2.setText("Data de Nascimento");
 
-        txtNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNomeActionPerformed(evt);
-            }
-        });
-
-        btnPesquisar.setText("Pesquisar");
+        btnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/search.png"))); // NOI18N
+        btnPesquisar.setText("Filtrar");
         btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesquisarActionPerformed(evt);
@@ -70,17 +69,18 @@ public class RelatorioClientesView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(0, 32, Short.MAX_VALUE))
+                            .addComponent(btnPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 162, Short.MAX_VALUE))
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addComponent(txtNascimento)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -93,33 +93,29 @@ public class RelatorioClientesView extends javax.swing.JFrame {
                 .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 179, Short.MAX_VALUE)
+                    .addComponent(txtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(btnPesquisar)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNomeActionPerformed
-
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         // TODO add your handling code here:
         try{
-            String wNome = txtNome.getText();
+            String wNascimento = txtNascimento.getText();
             
             Map<String, Object> parametros = new HashMap<String, Object>();
-            parametros.put("Nome", wNome);
+            parametros.put("Data de Nascimento", wNascimento);
             
             RelatoriosController objRelatorioCon = new RelatoriosController();            
-            String wSQL = "SELECT cl.idcliente, cl.nomecliente, cl.emailcliente, cl.cpfcliente, cl.telefonecliente, c.nomecidade, e.nomeestado "
+            String wSQL = "SELECT cl.idcliente, cl.nomecliente, cl.emailcliente, cl.cpfcliente, cl.telefonecliente, TO_CHAR(cl.nascimentocliente, 'DD/MM/YYYY') AS nascimentocliente, c.nomecidade, e.nomeestado "
                         + "FROM clientes cl, cidade c, estado e "
                         + "WHERE cl.idcidade = c.idcidade "
                         + "AND c.idestado = e.idestado "
-                        + "AND cl.nomecliente = '"+ wNome +"' ";
+                        + "AND cl.nascimentocliente = '"+ wNascimento +"' ";
             
             ResultSet resultSet = objRelatorioCon.relatorioCidades(wSQL);//Buscar os dados do relatório
             JRResultSetDataSource relResult = new JRResultSetDataSource(resultSet);//Passa um resultSet para a fonte de dados do relatório
@@ -180,6 +176,6 @@ public class RelatorioClientesView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField txtNome;
+    private javax.swing.JFormattedTextField txtNascimento;
     // End of variables declaration//GEN-END:variables
 }

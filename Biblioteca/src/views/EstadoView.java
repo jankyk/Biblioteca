@@ -234,6 +234,7 @@ public class EstadoView extends javax.swing.JFrame {
         }
         
         ec.PreencheEstado();
+        limparTela();
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed

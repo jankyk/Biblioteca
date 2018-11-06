@@ -15,13 +15,21 @@ WHERE c.idestado = e.idestado]]>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch"/>
+		<band height="41" splitType="Stretch">
+			<staticText>
+				<reportElement x="184" y="0" width="194" height="25" uuid="f8b02b02-a1bd-4f3b-b991-faec23aa15b3"/>
+				<textElement textAlignment="Center">
+					<font size="18" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Relatório de Cidades]]></text>
+			</staticText>
+		</band>
 	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch"/>
+		<band height="31" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch">
+		<band height="42" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="0" width="100" height="20" uuid="3920b5fd-0388-433b-aeaa-d2767c0a1bde"/>
 				<text><![CDATA[ID Cidade]]></text>
@@ -34,20 +42,23 @@ WHERE c.idestado = e.idestado]]>
 				<reportElement x="413" y="0" width="141" height="20" uuid="a33aa947-4c08-4025-acab-1db7e3852b67"/>
 				<text><![CDATA[UF]]></text>
 			</staticText>
+			<line>
+				<reportElement x="0" y="31" width="554" height="1" uuid="42e04e20-9d73-4f9b-bcba-4e7bb7a22a18"/>
+			</line>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch">
+		<band height="36" splitType="Stretch">
 			<textField>
 				<reportElement x="0" y="0" width="100" height="20" uuid="f05100e8-f7d6-4dfd-aa2e-394bfabf7760"/>
 				<textFieldExpression><![CDATA[$F{idcidade}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="100" y="0" width="177" height="20" uuid="f6ecc920-3273-47aa-a0bb-dbc7c83e8b1b"/>
+				<reportElement x="100" y="0" width="313" height="20" uuid="f6ecc920-3273-47aa-a0bb-dbc7c83e8b1b"/>
 				<textFieldExpression><![CDATA[$F{nomecidade}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="277" y="0" width="136" height="20" uuid="d65e3748-49af-4a38-b52c-1a0b8ec85dec"/>
+				<reportElement x="413" y="0" width="142" height="20" uuid="d65e3748-49af-4a38-b52c-1a0b8ec85dec"/>
 				<textFieldExpression><![CDATA[$F{uf}]]></textFieldExpression>
 			</textField>
 		</band>

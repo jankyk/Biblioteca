@@ -17,13 +17,21 @@ WHERE l.idgenero = g.idgenero]]>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch"/>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="195" y="0" width="156" height="28" uuid="9a7f099d-14d2-460d-9965-f93869cdd837"/>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[Relatório de Livros]]></text>
+			</staticText>
+		</band>
 	</title>
 	<pageHeader>
 		<band height="35" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch">
+		<band height="41" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="0" width="64" height="20" uuid="5a3b1eac-9e90-4214-b8e9-7e34bac14eac"/>
 				<text><![CDATA[ID Livro]]></text>
@@ -44,10 +52,13 @@ WHERE l.idgenero = g.idgenero]]>
 				<reportElement x="425" y="0" width="130" height="20" uuid="87e62c79-e0ad-4394-b2c1-0a36a110b2fd"/>
 				<text><![CDATA[Genero]]></text>
 			</staticText>
+			<line>
+				<reportElement x="0" y="30" width="555" height="1" uuid="e75b2956-3921-44d0-a59e-6e0d35b3f25e"/>
+			</line>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch">
+		<band height="29" splitType="Stretch">
 			<textField>
 				<reportElement x="0" y="0" width="64" height="20" uuid="42b85af9-28c2-478a-bd1b-3ddd249dca7b"/>
 				<textFieldExpression><![CDATA[$F{idlivro}]]></textFieldExpression>
