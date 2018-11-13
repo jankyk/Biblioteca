@@ -339,6 +339,8 @@ public class FuncionariosView extends javax.swing.JFrame {
         }
         
         fc.PreencheFuncionario();
+        atualizarTabela();
+        limparTela();
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
@@ -365,9 +367,9 @@ public class FuncionariosView extends javax.swing.JFrame {
         FuncionarioController objFuncionariocon = new FuncionarioController(null, null);
         try {
             if (objFuncionariocon.excluirFuncionario(objFuncionario) == true) {
-                CaixaDeDialogo.obterinstancia().exibirMensagem("Funcionário removido com Sucesso!");
+                CaixaDeDialogo.obterinstancia().exibirMensagem("Funcionario removido com Sucesso!");
             } else {
-                CaixaDeDialogo.obterinstancia().exibirMensagem("Erro ao remover funcionário!");
+                CaixaDeDialogo.obterinstancia().exibirMensagem("Erro ao remover funcionario!");
             }
         } catch (Exception ex) {
             CaixaDeDialogo.obterinstancia().exibirMensagem("Erro: " + ex.getMessage());
@@ -386,21 +388,21 @@ public class FuncionariosView extends javax.swing.JFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         // TODO add your handling code here:
-      /*  guardarDados();
+      guardarDados();
 
-        CidadeController objCidadecon = new CidadeController(objCidade, null);
-        try {
-            if (objCidadecon.alterarCidade()== true) {
-                CaixaDeDialogo.obterinstancia().exibirMensagem("Cidade alterada com Sucesso!");
-            } else {
-                CaixaDeDialogo.obterinstancia().exibirMensagem("Erro ao alterar cidade!");
+            FuncionarioController objFuncionarioCon = new FuncionarioController(objFuncionario, null);
+            try {
+                if (objFuncionarioCon.alterarFuncionario()== true) {
+                    CaixaDeDialogo.obterinstancia().exibirMensagem("Funcionario alterado com Sucesso!");
+                } else {
+                    CaixaDeDialogo.obterinstancia().exibirMensagem("Erro ao alterar funcionario!");
+                }
+            } catch (Exception ex) {
+                CaixaDeDialogo.obterinstancia().exibirMensagem("Erro: " + ex.getMessage());
             }
-        } catch (Exception ex) {
-            CaixaDeDialogo.obterinstancia().exibirMensagem("Erro: " + ex.getMessage());
-        }
 
-        atualizarTabela();
-        limparTela();*/
+            atualizarTabela();
+            limparTela();
     }//GEN-LAST:event_btnEditarActionPerformed
 
     
@@ -460,8 +462,26 @@ public class FuncionariosView extends javax.swing.JFrame {
         txtEmail.setText("");
         txtRua.setText("");
         txtTelefone.setText("");
+        objComboCidade.SetaComboBox("");
         txtNome.grabFocus();
 }
+    
+    private boolean validarDados() {
+        try {
+            //VALIDAR O CAMPOS DA TELA
+            //RETURN FALSE SE ALGUM CAMPO NAO ESTA PREENCHIDO CORRETAMENTE
+           if( 
+            txtNome.getText().equals("") ||
+            txtEmail.getText().equals("")) {
+            return false;
+           } else {
+            return true;
+           }
+        } catch (Exception ex) {
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Erro: " + ex.getMessage());
+            return false;
+        }
+    }
     
     /**
      * @param args the command line arguments

@@ -5,17 +5,39 @@
  */
 package views;
 
+import controller.ClienteController;
+import java.sql.SQLException;
+import models.Cliente;
+import tools.CaixaDeDialogo;
+import tools.Combos;
+import tools.Formatacao;
+
 /**
  *
  * @author Janquiel Kappler
  */
 public class ClientesView extends javax.swing.JFrame {
+    Combos objComboCidade;
+    Cliente objCliente = new Cliente();
+    ClienteController cc = new ClienteController(objCliente, null);
 
     /**
      * Creates new form ClientesView
      */
     public ClientesView() {
         initComponents();
+        
+        try{
+            
+        
+        ClienteController clienteCon = new ClienteController(null, jTableListaClientes);
+        clienteCon.PreencheCliente();
+        
+        objComboCidade = new Combos(jComboBoxCidade);
+        objComboCidade.PreencheCombo("SELECT idcidade, nomecidade FROM cidade ORDER BY nomecidade");
+            }catch(SQLException ex){
+            System.out.println("Erro ao atualizar os Dados");
+    }
     }
 
     /**
@@ -47,10 +69,11 @@ public class ClientesView extends javax.swing.JFrame {
         jComboBoxCidade = new javax.swing.JComboBox<>();
         jSeparator2 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableClientes = new javax.swing.JTable();
+        jTableListaClientes = new javax.swing.JTable();
         btnAdicionar = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
         btnRemover = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -75,7 +98,7 @@ public class ClientesView extends javax.swing.JFrame {
 
         jComboBoxCidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jTableClientes.setModel(new javax.swing.table.DefaultTableModel(
+        jTableListaClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -86,7 +109,12 @@ public class ClientesView extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTableClientes);
+        jTableListaClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableListaClientesMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTableListaClientes);
 
         btnAdicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/sign-add.png"))); // NOI18N
         btnAdicionar.setText("Incluir");
@@ -109,6 +137,14 @@ public class ClientesView extends javax.swing.JFrame {
         btnRemover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRemoverActionPerformed(evt);
+            }
+        });
+
+        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/pencil.png"))); // NOI18N
+        btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
             }
         });
 
@@ -155,7 +191,8 @@ public class ClientesView extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnRemover, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnLimpar, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnAdicionar, javax.swing.GroupLayout.Alignment.TRAILING))))
+                            .addComponent(btnAdicionar, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnEditar, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -186,25 +223,27 @@ public class ClientesView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
-                            .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(txtRua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(txtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(jComboBoxCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnAdicionar)
                         .addGap(6, 6, 6)
                         .addComponent(btnLimpar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnRemover)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(txtRua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addComponent(txtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(jComboBoxCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnRemover)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnEditar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -217,40 +256,160 @@ public class ClientesView extends javax.swing.JFrame {
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
         // TODO add your handling code here:
-        /*objFuncionario.setNomefuncionario(txtNomeUsuario.getText());
-        objFuncionario.setLogin(txtLoginUsuario.getText());
-        String senha = new String(this.txtSenhaUsuario.getPassword());
-        objFuncionario.setSenha(senha);
-        fc.incluirFuncionario(objFuncionario);
-        CaixaDeDialogo.obterinstancia().exibirMensagem("Usuário cadastrado com Sucesso", "Cadastro", 'i');
-
-        fc.PreencheFuncionario();*/
+        guardarDados();
+        
+        ClienteController objClienteCon = new ClienteController(objCliente, null);
+        try{
+            if(objClienteCon.incluirCliente(objCliente)== true){
+                CaixaDeDialogo.obterinstancia().exibirMensagem("Cliente incluido");
+            }else{
+                CaixaDeDialogo.obterinstancia().exibirMensagem("Erro ao incluir cliente");
+            }
+        }catch (Exception ex) {
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Erro" + ex);
+        }
+        
+        cc.PreencheCliente();
+        atualizarTabela();
+        limparTela();
 
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         // TODO add your handling code here:
-        /*txtNomeUsuario.setText("");
-        txtLoginUsuario.setText("");
-        txtSenhaUsuario.setText("");
-        txtNomeUsuario.grabFocus();*/
+        limparTela();
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
         // TODO add your handling code here:
-        /*int linhaSelecionada = jTableListaUsuarios.getSelectedRow();
-        // Primeira coluna da linha
-        String coluna1 = jTableListaUsuarios.getModel().getValueAt(linhaSelecionada, 1).toString();
-        //basta agora chamar o método buscar, passando o COLUNA1 como parâmetro de consulta
-        objFuncionario = new Funcionario();
-
-        objFuncionario = fc.buscarFuncionarios(coluna1);
-
-        fc.excluirFuncionario(objFuncionario);
-
-        fc.PreencheFuncionario();*/
+        ClienteController objClientecon = new ClienteController(null, null);
+        try {
+            if (objClientecon.excluirCliente(objCliente) == true) {
+                CaixaDeDialogo.obterinstancia().exibirMensagem("Cliente removido com Sucesso!");
+            } else {
+                CaixaDeDialogo.obterinstancia().exibirMensagem("Erro ao remover cliente!");
+            }
+        } catch (Exception ex) {
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Erro: " + ex.getMessage());
+        }
+        atualizarTabela();
+        limparTela();
     }//GEN-LAST:event_btnRemoverActionPerformed
 
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        // TODO add your handling code here:
+        guardarDados();
+
+            ClienteController objClientecon = new ClienteController(objCliente, null);
+            try {
+                if (objClientecon.alterarFuncionario()== true) {
+                    CaixaDeDialogo.obterinstancia().exibirMensagem("Cliente alterado com Sucesso!");
+                } else {
+                    CaixaDeDialogo.obterinstancia().exibirMensagem("Erro ao alterar cliente!");
+                }
+            } catch (Exception ex) {
+                CaixaDeDialogo.obterinstancia().exibirMensagem("Erro: " + ex.getMessage());
+            }
+
+            atualizarTabela();
+            limparTela();
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void jTableListaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableListaClientesMouseClicked
+        // TODO add your handling code here:
+        //pega a linha selecionada
+        int linhaSelecionada = jTableListaClientes.getSelectedRow();
+   // Primeira coluna da linha
+   String coluna1 = jTableListaClientes.getModel().getValueAt(linhaSelecionada, 0).toString();
+   //basta agora chamar o método buscar, passando o COLUNA1 como parâmetro de consulta
+        objCliente = new Cliente();
+        ClienteController objClientecon = new ClienteController(null, null);
+        objCliente = objClientecon.buscarClientes(coluna1);
+         
+        preencheCampos();
+    }//GEN-LAST:event_jTableListaClientesMouseClicked
+
+    private void preencheCampos(){
+        try{
+            //txtIDCliente.setText(String.valueOf(objCliente.getIdcliente()));
+            txtNome.setText(objCliente.getNomecliente());
+            txtEmail.setText(objCliente.getEmailciente());
+            txtCPF.setText(objCliente.getCpfcliente());
+            
+            String dataformatada = Formatacao.ajustaDataDMA(txtNascimento.getText());
+            
+            txtNascimento.setText(objCliente.getNascimentocliente());
+            txtCPF.setText(objCliente.getCpfcliente());
+            txtTelefone.setText(objCliente.getTelefonecliente());
+            txtRua.setText(objCliente.getRuacliente());
+            txtBairro.setText(objCliente.getBairrocliente());
+            objComboCidade.SetaComboBox(String.valueOf(objCliente.getIdcidade()));
+        }catch(Exception ex){
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Erro: " + ex.getMessage());
+        }
+    }
+    
+    private void guardarDados(){
+        //objCliente.setIdfuncionario(Integer.parseInt(txtIDCliente.getText()));
+        objCliente.setNomecliente(txtNome.getText());
+        objCliente.setEmailciente(txtEmail.getText());
+        
+        String dataformatada = Formatacao.ajustaDataAMD(txtNascimento.getText());
+        
+        objCliente.setNascimentocliente(dataformatada);
+        objCliente.setCpfcliente(txtCPF.getText());
+        objCliente.setTelefonecliente(txtTelefone.getText());
+        objCliente.setRuacliente(txtRua.getText());
+        objCliente.setBairrocliente(txtBairro.getText());
+        
+        Combos c = (Combos) jComboBoxCidade.getSelectedItem();
+        String idcidade = c.getCodigo();
+        objCliente.setIdcidade(Integer.parseInt(idcidade));
+        
+        //objFuncionario.setBairrofuncionario(String.valueOf(objCidade.getIdestado()));
+    }
+    
+    private void atualizarTabela() {
+        try {
+
+            ClienteController clienteCon = new ClienteController(null, jTableListaClientes);
+            clienteCon.PreencheCliente();
+            limparTela();
+        } catch (Exception ex) {
+            CaixaDeDialogo.obterinstancia().exibirMensagem("ERRO:" + ex.getMessage());
+        }
+    }
+    
+    private void limparTela() {
+        //txtIDFuncionario.setText("");
+        txtNome.setText("");
+        txtEmail.setText("");
+        txtNascimento.setText("");
+        txtCPF.setText("");
+        txtTelefone.setText("");
+        txtBairro.setText("");
+        txtRua.setText("");
+        objComboCidade.SetaComboBox("");
+        txtNome.grabFocus();
+}
+    
+    private boolean validarDados() {
+        try {
+            //VALIDAR O CAMPOS DA TELA
+            //RETURN FALSE SE ALGUM CAMPO NAO ESTA PREENCHIDO CORRETAMENTE
+           if( 
+            txtNome.getText().equals("") ||
+            txtEmail.getText().equals("")) {
+            return false;
+           } else {
+            return true;
+           }
+        } catch (Exception ex) {
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Erro: " + ex.getMessage());
+            return false;
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -288,6 +447,7 @@ public class ClientesView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdicionar;
+    private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnRemover;
     private javax.swing.JComboBox<String> jComboBoxCidade;
@@ -303,7 +463,7 @@ public class ClientesView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTable jTableClientes;
+    private javax.swing.JTable jTableListaClientes;
     private javax.swing.JTextField txtBairro;
     private javax.swing.JTextField txtCPF;
     private javax.swing.JTextField txtEmail;

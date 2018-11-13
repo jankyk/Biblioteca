@@ -9,6 +9,7 @@ import connection.ConnectionFactory;
 import java.awt.Color;
 import java.awt.Component;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,28 +18,28 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import models.Funcionario;
+import models.Cliente;
 
 /**
  *
  * @author luis_
  */
-public class FuncionarioController {
+public class ClienteController {
     
-    Funcionario objFuncionario;
-    JTable jTableListaFuncionarios = null;
+    Cliente objCliente;
+    JTable jTableListaClientes = null;
     
     /**
      *
      * @param objFuncionario
-     * @param jTableListaUsuarios
+     * @param jTableListaClientes
      */
-    public FuncionarioController(Funcionario objFuncionario, JTable jTableListaFuncionarios) {
-        this.objFuncionario = objFuncionario;
-        this.jTableListaFuncionarios = jTableListaFuncionarios;
+    public ClienteController(Cliente objCliente, JTable jTableListaClientes) {
+        this.objCliente = objCliente;
+        this.jTableListaClientes = jTableListaClientes;
     }
     
-    public boolean incluirFuncionario(Funcionario objFuncionario){      
+    public boolean incluirCliente(Cliente objCliente){      
         
         
         ConnectionFactory.abreConexao();
@@ -46,16 +47,15 @@ public class FuncionarioController {
         PreparedStatement stmt = null;
         
         try {
-            stmt = con.prepareStatement("INSERT INTO funcionarios (nomefuncionario, emailfuncionario, telefonefuncionario, cpffuncionario, ruafuncionario, bairrofuncionario, idcidade, login, senha)VALUES(?,?,?,?,?,?,?,?,?)");
-            stmt.setString(1, objFuncionario.getNomefuncionario());
-            stmt.setString(2, objFuncionario.getEmailfuncionario());
-            stmt.setString(3, objFuncionario.getTelefonefuncionario());
-            stmt.setString(4, objFuncionario.getCpffuncionario());
-            stmt.setString(5, objFuncionario.getRuafuncionario());
-            stmt.setString(6, objFuncionario.getBairrofuncionario());
-            stmt.setInt(7, objFuncionario.getIdcidade());
-            stmt.setString(8, objFuncionario.getLogin());
-            stmt.setString(9, objFuncionario.getSenha());
+            stmt = con.prepareStatement("INSERT INTO clientes (nomecliente, emailcliente, nascimentocliente cpfcliente, telefonecliente, ruacliente, bairrocliente, idcidade)VALUES(?,?,?,?,?,?,?,?)");
+            stmt.setString(1, objCliente.getNascimentocliente());
+            stmt.setString(2, objCliente.getEmailciente());
+            stmt.setDate(3, Date.valueOf(objCliente.getNascimentocliente()));
+            stmt.setString(4, objCliente.getCpfcliente());
+            stmt.setString(5, objCliente.getTelefonecliente());
+            stmt.setString(6, objCliente.getRuacliente());
+            stmt.setString(7, objCliente.getBairrocliente());
+            stmt.setInt(8, objCliente.getIdcidade());
             
             
             stmt.executeUpdate();
@@ -71,7 +71,7 @@ public class FuncionarioController {
         
     }
     
-    public boolean excluirFuncionario(Funcionario objFuncionario){      
+    public boolean excluirCliente(Cliente objCliente){      
         
         
         ConnectionFactory.abreConexao();
@@ -79,8 +79,8 @@ public class FuncionarioController {
         PreparedStatement stmt = null;
         
         try {
-            stmt = con.prepareStatement("DELETE FROM funcionario WHERE idfuncionario = ? ");
-            stmt.setInt(1, objFuncionario.getIdfuncionario());
+            stmt = con.prepareStatement("DELETE FROM clientes WHERE idcliente = ? ");
+            stmt.setInt(1, objCliente.getIdcliente());
             
             stmt.executeUpdate();
             
@@ -95,7 +95,7 @@ public class FuncionarioController {
         
     }
     
-    public void PreencheFuncionario() {
+    public void PreencheCliente() {
         
         ConnectionFactory.abreConexao();
         
@@ -104,23 +104,22 @@ public class FuncionarioController {
         cabecalhos.add("ID");
         cabecalhos.add("Nome");
         cabecalhos.add("Email");
-        cabecalhos.add("Telefone");
+        cabecalhos.add("Nascimento");
         cabecalhos.add("CPF");
+        cabecalhos.add("Telefone");
         cabecalhos.add("Rua");
         cabecalhos.add("Bairro");
         cabecalhos.add("Cidade");
-        cabecalhos.add("Login");
-        cabecalhos.add("Senha");
         
         ResultSet result = null;
         
         try{
             
             String SQL = "";
-            SQL = " SELECT f.idfuncionario, f.nomefuncionario, f.emailfuncionario, f.telefonefuncionario, f.cpffuncionario, f.ruafuncionario, f.bairrofuncionario, c.nomecidade, f.login, f.senha";
-            SQL += " FROM funcionarios f, cidade c ";
-            SQL += " WHERE f.idcidade = c.idcidade";
-            SQL += " ORDER BY f.nomefuncionario ";
+            SQL = " SELECT c.idcliente, c.nomecliente, c.emailcliente, c.nascimentocliente, c.cpfcliente, c.telefonecliente, c.ruacliente, c.bairrocliente, ci.nomecidade";
+            SQL += " FROM clientes c, cidade ci ";
+            SQL += " WHERE c.idcidade = ci.idcidade";
+            SQL += " ORDER BY c.nomecliente ";
             
             result = ConnectionFactory.stmt.executeQuery(SQL);
             
@@ -135,7 +134,6 @@ public class FuncionarioController {
                 linha.add(result.getString(7));
                 linha.add(result.getString(8));
                 linha.add(result.getString(9));
-                linha.add(result.getString(10));
                 dadosTabela.add(linha);
             }
         } catch (SQLException e) {
@@ -143,7 +141,7 @@ public class FuncionarioController {
             System.out.println(e);
         }
         
-        jTableListaFuncionarios.setModel(new DefaultTableModel(dadosTabela, cabecalhos) {
+        jTableListaClientes.setModel(new DefaultTableModel(dadosTabela, cabecalhos) {
             
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -153,12 +151,12 @@ public class FuncionarioController {
         });
         
         //Permite seleção de apenas uma linha da tabela
-        jTableListaFuncionarios.setSelectionMode(0);
+        jTableListaClientes.setSelectionMode(0);
         
         //Redimensiona as colunas de uma tabela
         TableColumn column = null;
         for (int i = 0; i < 9; i++) {
-            column = jTableListaFuncionarios.getColumnModel().getColumn(i);
+            column = jTableListaClientes.getColumnModel().getColumn(i);
             switch (1) {
                 case 0:
                 column.setPreferredWidth(80);
@@ -186,15 +184,11 @@ public class FuncionarioController {
                 break;
                  case 8:
                 column.setPreferredWidth(80);
-                break;
-                 case 9:
-                column.setPreferredWidth(80);
-                break;
-                
+                break;                
             }
         }
         
-        jTableListaFuncionarios.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+        jTableListaClientes.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
             
             @Override
             public Component getTableCellRendererComponent (JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
@@ -209,37 +203,36 @@ public class FuncionarioController {
         });
     }
     
-    public models.Funcionario buscarFuncionarios(String id){
+    public Cliente buscarClientes(String id){
         
         try {
             ConnectionFactory.abreConexao();
             ResultSet rs = null;
 
             String SQL = "";
-            SQL = " SELECT f.idfuncionario, f.nomefuncionario, f.emailfuncionario, f.telefonefuncionario, f.cpffuncionario, f.ruafuncionario, f.bairrofuncionario, f.idcidade, f.login, f.senha";
-            SQL += " FROM funcionarios f";
-            SQL += " WHERE idfuncionario = '" + id + "'";
+            SQL = " SELECT c.idcliente, c.nomecliente, c.emailcliente, c.nascimentocliente, c.cpfcliente, c.telefonecliente, c.ruacliente, c.bairrocliente, c.idcidade";
+            SQL += " FROM clientes c";
+            SQL += " WHERE idcliente = '" + id + "'";
             //stm.executeQuery(SQL);
 
             try{
-                System.out.println("Vai Executar Conexão em buscar funcionarios");
+                System.out.println("Vai Executar Conexão em buscar clientes");
                 rs = ConnectionFactory.stmt.executeQuery(SQL);
-                System.out.println("Executou Conexão em buscar funcionario");
+                System.out.println("Executou Conexão em buscar clientes");
                 
-               objFuncionario = new models.Funcionario();
+               objCliente = new models.Cliente();
                
                 if(rs.next() == true)
                 {
-                    objFuncionario.setIdfuncionario(rs.getInt(1));
-                    objFuncionario.setNomefuncionario(rs.getString(2));
-                    objFuncionario.setEmailfuncionario(rs.getString(3));
-                    objFuncionario.setTelefonefuncionario(rs.getString(4));
-                    objFuncionario.setCpffuncionario(rs.getString(5));
-                    objFuncionario.setRuafuncionario(rs.getString(6));
-                    objFuncionario.setBairrofuncionario(rs.getString(7));
-                    objFuncionario.setIdcidade(rs.getInt(8));
-                    objFuncionario.setLogin(rs.getString(9));
-                    objFuncionario.setSenha(rs.getString(10));
+                    objCliente.setIdcliente(rs.getInt(1));
+                    objCliente.setNomecliente(rs.getString(2));
+                    objCliente.setEmailciente(rs.getString(3));
+                    objCliente.setNascimentocliente(rs.getString(4));
+                    objCliente.setCpfcliente(rs.getString(5));
+                    objCliente.setTelefonecliente(rs.getString(6));
+                    objCliente.setRuacliente(rs.getString(7));
+                    objCliente.setBairrocliente(rs.getString(8));
+                    objCliente.setIdcidade(rs.getInt(9));
 
                 }
             }
@@ -255,8 +248,8 @@ public class FuncionarioController {
             return null;
         }
         
-        System.out.println ("Executou buscar funcionario com sucesso");
-        return objFuncionario;
+        System.out.println ("Executou buscar cliente com sucesso");
+        return objCliente;
     }
     
     public boolean alterarFuncionario(){
@@ -266,17 +259,16 @@ public class FuncionarioController {
         PreparedStatement stmt = null;
  
         try {
-            stmt = con.prepareStatement("UPDATE funcionarios SET nomefuncionario=?, emailfuncionario=?, telefonefuncionario=?, cpffuncionario=?, ruafuncionario=?, bairrofuncionario=?, idcidade=?, login=?, senha=? WHERE idfuncionario=?");
-            stmt.setString(1, objFuncionario.getNomefuncionario());
-            stmt.setString(2, objFuncionario.getEmailfuncionario());
-            stmt.setString(3, objFuncionario.getTelefonefuncionario());
-            stmt.setString(4, objFuncionario.getCpffuncionario());
-            stmt.setString(5, objFuncionario.getRuafuncionario());
-            stmt.setString(6, objFuncionario.getBairrofuncionario());
-            stmt.setInt(7, objFuncionario.getIdcidade());
-            stmt.setString(8, objFuncionario.getLogin());
-            stmt.setString(9, objFuncionario.getSenha());
-            stmt.setInt(10, objFuncionario.getIdfuncionario());
+            stmt = con.prepareStatement("UPDATE clientes SET nomecliente=?, emailcliente=?, nascimentocliente=?, cpfcliente=?, telefonecliente=?, ruacliente=?, bairrocliente=?, idcidade=? WHERE idcliente=?");
+            stmt.setString(1, objCliente.getNomecliente());
+            stmt.setString(2, objCliente.getEmailciente());
+            stmt.setDate(3, Date.valueOf(objCliente.getNascimentocliente()));
+            stmt.setString(4, objCliente.getCpfcliente());
+            stmt.setString(5, objCliente.getTelefonecliente());
+            stmt.setString(6, objCliente.getRuacliente());
+            stmt.setString(7, objCliente.getBairrocliente());
+            stmt.setInt(8, objCliente.getIdcidade());
+            stmt.setInt(9, objCliente.getIdcliente());
  
             stmt.executeUpdate();
  

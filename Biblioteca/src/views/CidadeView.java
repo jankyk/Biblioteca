@@ -236,6 +236,7 @@ public class CidadeView extends javax.swing.JFrame {
             CaixaDeDialogo.obterinstancia().exibirMensagem("Erro" + ex);
         }
         
+        limparTela();
         //cc.PreencheCidade();
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
