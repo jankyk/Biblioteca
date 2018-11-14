@@ -79,7 +79,7 @@ public class FuncionarioController {
         PreparedStatement stmt = null;
         
         try {
-            stmt = con.prepareStatement("DELETE FROM funcionario WHERE idfuncionario = ? ");
+            stmt = con.prepareStatement("DELETE FROM funcionarios WHERE idfuncionario = ? ");
             stmt.setInt(1, objFuncionario.getIdfuncionario());
             
             stmt.executeUpdate();

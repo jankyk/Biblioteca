@@ -339,7 +339,7 @@ public class FuncionariosView extends javax.swing.JFrame {
             CaixaDeDialogo.obterinstancia().exibirMensagem("Erro" + ex);
         }
         
-        fc.PreencheFuncionario();
+        //fc.PreencheFuncionario();
         atualizarTabela();
         limparTela();
     }//GEN-LAST:event_btnAdicionarActionPerformed
@@ -425,7 +425,7 @@ public class FuncionariosView extends javax.swing.JFrame {
     }
     
     private void guardarDados(){
-        objFuncionario.setIdfuncionario(Integer.parseInt(txtIDFuncionario.getText()));
+        //objFuncionario.setIdfuncionario(Integer.parseInt(txtIDFuncionario.getText()));
         objFuncionario.setNomefuncionario(txtNome.getText());
         objFuncionario.setBairrofuncionario(txtBairro.getText());
         objFuncionario.setCpffuncionario(txtCPF.getText());
