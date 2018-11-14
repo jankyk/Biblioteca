@@ -116,7 +116,7 @@ public class ClienteController {
         try{
             
             String SQL = "";
-            SQL = " SELECT c.idcliente, c.nomecliente, c.emailcliente, c.nascimentocliente, c.cpfcliente, c.telefonecliente, c.ruacliente, c.bairrocliente, ci.nomecidade";
+            SQL = " SELECT c.idcliente, c.nomecliente, c.emailcliente, c.nascimentocliente, c.cpfcliente, c.telefonecliente, c.ruacliente, c.bairrocliente, c.idcidade";
             SQL += " FROM clientes c, cidade ci ";
             SQL += " WHERE c.idcidade = ci.idcidade";
             SQL += " ORDER BY c.nomecliente ";

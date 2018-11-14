@@ -23,57 +23,64 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jSeparator1" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jSeparator2" max="32767" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" alignment="0" min="-2" pref="375" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jSeparator2" min="-2" pref="375" max="-2" attributes="0"/>
+                          <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
+                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="txtEmail" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="txtNome" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="txtNascimento" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="txtCPF" alignment="0" min="-2" pref="148" max="-2" attributes="0"/>
+                                          <Component id="txtIDCliente" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="txtBairro" max="32767" attributes="0"/>
+                                          <Component id="txtRua" max="32767" attributes="0"/>
+                                          <Component id="jComboBoxCidade" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="txtTelefone" min="-2" pref="147" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtEmail" alignment="0" pref="148" max="32767" attributes="0"/>
-                                  <Component id="txtNome" alignment="0" pref="148" max="32767" attributes="0"/>
-                                  <Component id="txtNascimento" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtCPF" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtBairro" pref="147" max="32767" attributes="0"/>
-                                  <Component id="txtRua" pref="147" max="32767" attributes="0"/>
-                                  <Component id="jComboBoxCidade" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtTelefone" max="32767" attributes="0"/>
+                                  <Component id="btnEditar" min="-2" pref="91" max="-2" attributes="0"/>
+                                  <Component id="btnRemover" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnAdicionar" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnLimpar" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
+                          <Component id="jScrollPane1" alignment="0" min="-2" pref="375" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="78" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="btnRemover" alignment="1" max="32767" attributes="0"/>
-                          <Component id="btnLimpar" alignment="1" max="32767" attributes="0"/>
-                          <Component id="btnAdicionar" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnEditar" alignment="1" max="32767" attributes="0"/>
-                      </Group>
+                      <EmptySpace min="0" pref="2" max="32767" attributes="0"/>
                   </Group>
+                  <Component id="jSeparator1" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -86,9 +93,24 @@
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                      <Component id="btnAdicionar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btnRemover" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btnLimpar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btnEditar" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtIDCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtNome" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -129,20 +151,11 @@
                           <Component id="jComboBoxCidade" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="btnAdicionar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                      <Component id="btnLimpar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnRemover" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnEditar" min="-2" max="-2" attributes="0"/>
-                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
+              <Component id="jSeparator2" min="-2" pref="7" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="191" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="171" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -297,6 +310,16 @@
     <Component class="javax.swing.JFormattedTextField" name="txtCPF">
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="txtTelefone">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel10">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ID:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtIDCliente">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

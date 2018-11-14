@@ -27,6 +27,7 @@ public class EstadoView extends javax.swing.JFrame {
         
         ec = new EstadoController(null, jTableEstado);
         ec.PreencheEstado();
+        atualizarTabela();
     }
 
     /**
@@ -216,8 +217,7 @@ public class EstadoView extends javax.swing.JFrame {
             CaixaDeDialogo.obterinstancia().exibirMensagem("Erro" + ex);
         }
         
-        ec.PreencheEstado();
-        limparTela();
+        atualizarTabela();
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
@@ -237,6 +237,7 @@ public class EstadoView extends javax.swing.JFrame {
         } catch (Exception ex) {
             CaixaDeDialogo.obterinstancia().exibirMensagem("Erro: " + ex.getMessage());
         }
+        
         atualizarTabela();
     }//GEN-LAST:event_btnRemoverActionPerformed
 
@@ -270,7 +271,6 @@ public class EstadoView extends javax.swing.JFrame {
             }
 
             atualizarTabela();
-            limparTela();
     }//GEN-LAST:event_btnEditarActionPerformed
 
     
@@ -285,7 +285,6 @@ public class EstadoView extends javax.swing.JFrame {
     }
     
     private void guardarDados(){
-//        objEstado.setIdestado(Integer.parseInt(txtIDEstado.getText()));
         objEstado.setNomeestado(txtNome.getText());
         objEstado.setUf(txtUF.getText());
     }

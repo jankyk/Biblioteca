@@ -207,10 +207,9 @@ public class LivroController {
             ResultSet rs = null;
 
             String SQL = "";
-            SQL = " SELECT l.idlivro, l.titulolivro, l.autorlivro, g.nomegenero";
-            SQL += " FROM livros l, genero g";
-            SQL += " WHERE l.idgenero = g.idgenero";
-            SQL += " AND idlivro = '" + id + "'";
+            SQL = " SELECT l.idlivro, l.titulolivro, l.autorlivro, l.numpaginas, l.idgenero";
+            SQL += " FROM livros l";
+            SQL += " WHERE idlivro = '" + id + "'";
             //stm.executeQuery(SQL);
 
             try{
@@ -223,7 +222,10 @@ public class LivroController {
                 if(rs.next() == true)
                 {
                     objLivro.setIdlivro(rs.getInt(1));
-                    objLivro.setAutorlivro(rs.getString(2));                    
+                    objLivro.setTitulolivro(rs.getString(2));                    
+                    objLivro.setAutorlivro(rs.getString(3));                    
+                    objLivro.setNumpaginas(rs.getInt(4));                    
+                    objLivro.setIdgenero(rs.getInt(5));                    
                 }
             }
 

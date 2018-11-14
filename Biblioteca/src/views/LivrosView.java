@@ -37,6 +37,7 @@ public class LivrosView extends javax.swing.JFrame {
         }catch(SQLException ex){
           System.out.println("Erro ao atualizar os Dados");
         }
+        atualizarTabela();
     }
         
 
@@ -261,6 +262,7 @@ public class LivrosView extends javax.swing.JFrame {
         }catch (Exception ex) {
             CaixaDeDialogo.obterinstancia().exibirMensagem("Erro" + ex);
         }
+        atualizarTabela();
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
@@ -299,7 +301,6 @@ public class LivrosView extends javax.swing.JFrame {
         }
 
         atualizarTabela();
-        limparTela();
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void jTableLivroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableLivroMouseClicked

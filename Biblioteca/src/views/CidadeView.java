@@ -10,7 +10,6 @@ import java.sql.SQLException;
 import models.Cidade;
 import tools.CaixaDeDialogo;
 import tools.Combos;
-//import models.CidadeView;
 
 /**
  *
@@ -20,7 +19,6 @@ public class CidadeView extends javax.swing.JFrame {
     
     Combos objComboUF;
     Cidade objCidade = new Cidade();
-    //CidadeController cc = new CidadeController(objCidade, null);
     
     
 
@@ -41,6 +39,7 @@ public class CidadeView extends javax.swing.JFrame {
     }catch(SQLException ex){
             System.out.println("Erro ao atualizar os Dados");
     }
+        atualizarTabela();
     }
 
     /**
@@ -236,8 +235,7 @@ public class CidadeView extends javax.swing.JFrame {
             CaixaDeDialogo.obterinstancia().exibirMensagem("Erro" + ex);
         }
         
-        limparTela();
-        //cc.PreencheCidade();
+        atualizarTabela();
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
@@ -257,6 +255,7 @@ public class CidadeView extends javax.swing.JFrame {
         } catch (Exception ex) {
             CaixaDeDialogo.obterinstancia().exibirMensagem("Erro: " + ex.getMessage());
         }
+        
         atualizarTabela();
     }//GEN-LAST:event_btnRemoverActionPerformed
 
@@ -294,7 +293,6 @@ public class CidadeView extends javax.swing.JFrame {
         }
 
         atualizarTabela();
-        limparTela();
     }//GEN-LAST:event_btnEditarActionPerformed
 
     
@@ -309,9 +307,7 @@ public class CidadeView extends javax.swing.JFrame {
     }
     
     private void guardarDados(){
-        //objCidade.setIdcidade(Integer.parseInt(txtIDCidade.getText()));
         objCidade.setNome(txtNome.getText());
-        //objCidade.setIdestado(Integer.valueOf(objCidade.getIdestado()));
         
         Combos c = (Combos) jComboBoxEstado.getSelectedItem();
         String idestado = c.getCodigo();
@@ -336,11 +332,6 @@ public class CidadeView extends javax.swing.JFrame {
         txtNome.grabFocus();
 }
     
-    /*private void validacampos() {
-        if(txtNome.getText()==null || txtNome.getText().trim().equals("")){
-        System.out.println("Preencha o nome da cidade");
-        }
-}*/
     private boolean validarDados() {
         try {
             //VALIDAR O CAMPOS DA TELA

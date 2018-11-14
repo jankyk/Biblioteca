@@ -26,6 +26,7 @@ public class GeneroView extends javax.swing.JFrame {
         
         gc = new GeneroController(null, jTableGenero);
         gc.PreencheGenero();
+        atualizarTabela();
     }
 
     /**
@@ -210,8 +211,7 @@ public class GeneroView extends javax.swing.JFrame {
             CaixaDeDialogo.obterinstancia().exibirMensagem("Erro" + ex);
         }
         
-        gc.PreencheGenero();
-        limparTela();
+        atualizarTabela();
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
@@ -232,7 +232,6 @@ public class GeneroView extends javax.swing.JFrame {
             CaixaDeDialogo.obterinstancia().exibirMensagem("Erro: " + ex.getMessage());
         }
         atualizarTabela();
-        limparTela();
     }//GEN-LAST:event_btnRemoverActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
@@ -251,7 +250,6 @@ public class GeneroView extends javax.swing.JFrame {
             }
 
             atualizarTabela();
-            limparTela();
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void jTableGeneroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableGeneroMouseClicked

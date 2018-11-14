@@ -14,7 +14,7 @@ import tools.Formatacao;
 
 /**
  *
- * @author luis_
+ * @author Janquiel Kappler
  */
 public class FuncionariosView extends javax.swing.JFrame {
     
@@ -339,9 +339,7 @@ public class FuncionariosView extends javax.swing.JFrame {
             CaixaDeDialogo.obterinstancia().exibirMensagem("Erro" + ex);
         }
         
-        //fc.PreencheFuncionario();
         atualizarTabela();
-        limparTela();
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
@@ -351,11 +349,11 @@ public class FuncionariosView extends javax.swing.JFrame {
 
     private void jTableListaFuncionariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableListaFuncionariosMouseClicked
         // TODO add your handling code here:
-       //pega a linha selecionada
+        //pega a linha selecionada
         int linhaSelecionada = jTableListaFuncionarios.getSelectedRow();
-   // Primeira coluna da linha
-   String coluna1 = jTableListaFuncionarios.getModel().getValueAt(linhaSelecionada, 0).toString();
-   //basta agora chamar o método buscar, passando o COLUNA1 como parâmetro de consulta
+        // Primeira coluna da linha
+        String coluna1 = jTableListaFuncionarios.getModel().getValueAt(linhaSelecionada, 0).toString();
+        //basta agora chamar o método buscar, passando o COLUNA1 como parâmetro de consulta
         objFuncionario = new Funcionario();
         FuncionarioController objFuncionariocon = new FuncionarioController(null, null);
         objFuncionario = objFuncionariocon.buscarFuncionarios(coluna1);
@@ -376,7 +374,6 @@ public class FuncionariosView extends javax.swing.JFrame {
             CaixaDeDialogo.obterinstancia().exibirMensagem("Erro: " + ex.getMessage());
         }
         atualizarTabela();
-        limparTela();
     }//GEN-LAST:event_btnRemoverActionPerformed
 
     private void txtIDFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDFuncionarioActionPerformed
@@ -403,7 +400,6 @@ public class FuncionariosView extends javax.swing.JFrame {
             }
 
             atualizarTabela();
-            limparTela();
     }//GEN-LAST:event_btnEditarActionPerformed
 
     
@@ -425,7 +421,6 @@ public class FuncionariosView extends javax.swing.JFrame {
     }
     
     private void guardarDados(){
-        //objFuncionario.setIdfuncionario(Integer.parseInt(txtIDFuncionario.getText()));
         objFuncionario.setNomefuncionario(txtNome.getText());
         objFuncionario.setBairrofuncionario(txtBairro.getText());
         objFuncionario.setCpffuncionario(txtCPF.getText());
@@ -438,13 +433,10 @@ public class FuncionariosView extends javax.swing.JFrame {
         Combos c = (Combos) jComboBoxCidade.getSelectedItem();
         String idcidade = c.getCodigo();
         objFuncionario.setIdcidade(Integer.parseInt(idcidade));
-        
-        //objFuncionario.setBairrofuncionario(String.valueOf(objCidade.getIdestado()));
     }
     
     private void atualizarTabela() {
         try {
-
             FuncionarioController funcionariocon = new FuncionarioController(null, jTableListaFuncionarios);
             funcionariocon.PreencheFuncionario();
             Formatacao.colocaMascara(txtCPF, "###.###.###-##");
