@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import models.Funcionario;
 import tools.CaixaDeDialogo;
 import tools.Combos;
+import tools.Formatacao;
 
 /**
  *
@@ -40,7 +41,7 @@ public class FuncionariosView extends javax.swing.JFrame {
             }catch(SQLException ex){
             System.out.println("Erro ao atualizar os Dados");
     }
-        
+     atualizarTabela();
     }
 
     /**
@@ -76,11 +77,11 @@ public class FuncionariosView extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         txtIDFuncionario = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
-        txtTelefone = new javax.swing.JTextField();
-        txtCPF = new javax.swing.JTextField();
         txtBairro = new javax.swing.JTextField();
         txtRua = new javax.swing.JTextField();
         btnEditar = new javax.swing.JButton();
+        txtCPF = new javax.swing.JFormattedTextField();
+        txtTelefone = new javax.swing.JFormattedTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -214,13 +215,13 @@ public class FuncionariosView extends javax.swing.JFrame {
                                             .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(txtIDFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addGap(27, 27, 27)
-                                        .addComponent(txtCPF))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel5)
+                                            .addComponent(jLabel6))
                                         .addGap(18, 18, 18)
-                                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+                                            .addComponent(txtCPF))))
                                 .addGap(102, 102, 102)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(layout.createSequentialGroup()
@@ -232,9 +233,9 @@ public class FuncionariosView extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(txtSenhaUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
-                                            .addComponent(txtTelefone)
                                             .addComponent(txtRua)
-                                            .addComponent(jComboBoxCidade, 0, 257, Short.MAX_VALUE)))
+                                            .addComponent(jComboBoxCidade, 0, 257, Short.MAX_VALUE)
+                                            .addComponent(txtTelefone)))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel3)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -446,6 +447,8 @@ public class FuncionariosView extends javax.swing.JFrame {
 
             FuncionarioController funcionariocon = new FuncionarioController(null, jTableListaFuncionarios);
             funcionariocon.PreencheFuncionario();
+            Formatacao.colocaMascara(txtCPF, "###.###.###-##");
+            Formatacao.colocaMascara(txtTelefone, "(##) #####-####");
             limparTela();
         } catch (Exception ex) {
             CaixaDeDialogo.obterinstancia().exibirMensagem("ERRO:" + ex.getMessage());
@@ -548,13 +551,13 @@ public class FuncionariosView extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTable jTableListaFuncionarios;
     private javax.swing.JTextField txtBairro;
-    private javax.swing.JTextField txtCPF;
+    private javax.swing.JFormattedTextField txtCPF;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtIDFuncionario;
     private javax.swing.JTextField txtLoginUsuario;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtRua;
     private javax.swing.JPasswordField txtSenhaUsuario;
-    private javax.swing.JTextField txtTelefone;
+    private javax.swing.JFormattedTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
 }

@@ -47,8 +47,8 @@ public class ClienteController {
         PreparedStatement stmt = null;
         
         try {
-            stmt = con.prepareStatement("INSERT INTO clientes (nomecliente, emailcliente, nascimentocliente cpfcliente, telefonecliente, ruacliente, bairrocliente, idcidade)VALUES(?,?,?,?,?,?,?,?)");
-            stmt.setString(1, objCliente.getNascimentocliente());
+            stmt = con.prepareStatement("INSERT INTO clientes (nomecliente, emailcliente, nascimentocliente, cpfcliente, telefonecliente, ruacliente, bairrocliente, idcidade)VALUES(?,?,?,?,?,?,?,?)");
+            stmt.setString(1, objCliente.getNomecliente());
             stmt.setString(2, objCliente.getEmailciente());
             stmt.setDate(3, Date.valueOf(objCliente.getNascimentocliente()));
             stmt.setString(4, objCliente.getCpfcliente());
@@ -155,7 +155,7 @@ public class ClienteController {
         
         //Redimensiona as colunas de uma tabela
         TableColumn column = null;
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < 8; i++) {
             column = jTableListaClientes.getColumnModel().getColumn(i);
             switch (1) {
                 case 0:
